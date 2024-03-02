@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'base_scaffold.dart';
+import 'screens/my_library.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -7,14 +7,32 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: SafeArea(child: BaseScaffold()),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Booky',
+      theme: ThemeData(
+        useMaterial3: false,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color(0xFF141D29),
+          secondary: const Color(0xFF58595B),
+          background: const Color(0xFFDCE2EB),
+          tertiary: const Color(0xFFFF4713)
+        ),
+      ),
+      routes: {
+        "/" : (context) => const MyLibrary(),
+        //"/explore" : (context) => Explore(),
+        //"/dashboard" : (context) => Dashboard(),
+        //"/notes" : (context) => Notes(),
+      },
+      initialRoute: "/",
     );
+
   }
 }
+
 
 
