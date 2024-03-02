@@ -1,10 +1,16 @@
 
 import 'package:flutter/material.dart';
 
-class BaseScaffold extends StatelessWidget{
-  final AppBar appBar;
+class BaseScaffold extends StatefulWidget{
+  const BaseScaffold({super.key});
 
-  const BaseScaffold({Key? key, required this.appBar}) : super(key: key);
+  @override
+  State<BaseScaffold> createState() => _BaseScaffoldState();
+
+}
+
+class _BaseScaffoldState extends State<BaseScaffold>{
+  get appBar => null;
 
 
   @override
@@ -31,6 +37,7 @@ class BaseScaffold extends StatelessWidget{
               icon: Icon(Icons.draw),
               label: "Notes"),
         ],
+
       ),
       appBar: appBar,
       drawer:  Drawer(
@@ -53,4 +60,5 @@ class BaseScaffold extends StatelessWidget{
       ),
     );
   }
+
 }
