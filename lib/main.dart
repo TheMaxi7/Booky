@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'book_column.dart';
+import 'package:booky/book.dart';
 void main() {
   runApp(const BookyApp());
 }
@@ -34,7 +35,7 @@ class _BookyAppHomeState extends State<BookyAppHome>{
   int _selectedIconIndex=0;
 
   final List<Widget> _screens = <Widget>[
-    Container(color: Colors.amber),
+    const BookColumn(),
     Container(color: Colors.green),
     Container(color: Colors.blue),
   ];
