@@ -1,3 +1,4 @@
+import 'package:booky/book_info.dart';
 import 'package:booky/my_book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/sample_data.dart';
@@ -17,7 +18,20 @@ class _BookColumnState extends State<BookColumn>{
   Widget build(BuildContext context) {
     return ListView.separated(
         itemBuilder: (context, index){
-          return MyBookCard(book: SampleData.allBooks[index]);
+          return GestureDetector(
+            onTap:(){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context){
+                  return BookInfo(
+                    book:SampleData.allBooks[index],
+                  );
+                }
+                ),
+              );
+            },
+            child: MyBookCard(book: SampleData.allBooks[index])
+          );
         },
         separatorBuilder: (context,index){
           return const SizedBox(

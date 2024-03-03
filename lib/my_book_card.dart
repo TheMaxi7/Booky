@@ -16,17 +16,24 @@ class _MyBookCardState extends State<MyBookCard> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: const Color(0xFFDCE2EB),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 8, left: 8, bottom: 8, right: 0),
+            padding: const EdgeInsets.only(top: 8, left: 8, bottom: 8, right: 0),
             child: Container(
               width: (MediaQuery.of(context).size.width) /3,
               height: (MediaQuery.of(context).size.width)/3*1.51,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10) ,
+                borderRadius: BorderRadius.circular(5) ,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5), // Shadow color
+                    spreadRadius: 3, // Spread radius
+                    blurRadius: 5, // Blur radius
+                    offset: Offset(0, 3), // Offset
+                  ),
+                ],
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage(widget.book.cover),
@@ -42,24 +49,19 @@ class _MyBookCardState extends State<MyBookCard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 4),
                   child: Text(
-                    widget.book.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                    widget.book.name, style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
+                Text(
+                  widget.book.author,style: Theme.of(context).textTheme.headlineSmall,
+
                 ),
                 Text(
-                  widget.book.author,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                Text(
-                  'Genre: ${widget.book.genre}',
-                  style: const TextStyle(fontSize: 14),
+                  'Genre: ${widget.book.genre}',style: Theme.of(context).textTheme.bodyMedium,
+
                 ),
                 Text(
                   'Pages: ${widget.book.pages.toString()}',
-                  style: const TextStyle(fontSize: 14),
                 ),
               ],
             ),

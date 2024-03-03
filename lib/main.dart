@@ -1,20 +1,23 @@
+import 'package:booky/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'book_column.dart';
 
 void main() {
-  runApp(const BookyApp());
+  runApp( BookyApp());
 }
 
 class BookyApp extends StatelessWidget{
-  const BookyApp({super.key});
+  BookyApp({super.key});
 
+  final ThemeData appTheme = BookyTheme.normal();
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
 
       debugShowCheckedModeBanner: false,
+      theme: appTheme,
       title: "",
-      home: BookyAppHome(title:"My Library"),
+      home: const BookyAppHome(title:"My Library"),
 
       );
   }
@@ -52,8 +55,8 @@ class _BookyAppHomeState extends State<BookyAppHome>{
     return Scaffold(
       backgroundColor: const Color(0xFFDCE2EB),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFDCE2EB) ,
-        title: Text(_titles[_selectedIconIndex],style: TextStyle(color: Color(0xFF141D29))),
+
+        title: Text(_titles[_selectedIconIndex], style: Theme.of(context).textTheme.headlineMedium,),
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.person),
@@ -91,9 +94,6 @@ class _BookyAppHomeState extends State<BookyAppHome>{
             _selectedIconIndex=index;
           });
         },
-        backgroundColor: const Color(0xFFDCE2EB),
-        selectedItemColor:  const Color(0xFFFF4713),
-        unselectedItemColor: const Color(0xFF58595B),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.local_library_outlined),
