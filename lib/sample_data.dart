@@ -6,7 +6,8 @@ import 'book.dart';
 class SampleData {
   static Book book1 = Book(
     name : "Deep Work",
-    cover : "assets/deepwork.jpg",
+    cover : 'assets/images/deepwork.jpg',
+    author: "Cal Newport",
     description : "Deep work it what yohnot ay.",
     pages : 296,
     genre : "Self Help",
@@ -30,7 +31,8 @@ class SampleData {
 
   static Book book2 = Book(
     name : "Atomic Habits",
-    cover : "assets/atomichabits.jpg",
+    cover : 'assets/images/atomichabits.jpg',
+    author: "James Clear",
     description : "lorem",
     pages : 296,
     genre : "Self Help",
@@ -54,7 +56,8 @@ class SampleData {
 
   static Book book3 = Book(
     name : "Quiet",
-    cover : "assets/quiet.jpg",
+    author: "Susan Cain",
+    cover : 'assets/images/quiet.jpg',
     description : "lorem",
     pages : 296,
     genre : "Psychology",

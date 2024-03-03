@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'book_column.dart';
-import 'package:booky/book.dart';
+
 void main() {
   runApp(const BookyApp());
 }
@@ -11,6 +11,7 @@ class BookyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: "",
       home: BookyAppHome(title:"My Library"),
@@ -49,6 +50,7 @@ class _BookyAppHomeState extends State<BookyAppHome>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFDCE2EB),
       appBar: AppBar(
         backgroundColor: const Color(0xFFDCE2EB) ,
         title: Text(_titles[_selectedIconIndex],style: TextStyle(color: Color(0xFF141D29))),
