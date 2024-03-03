@@ -20,17 +20,21 @@ class _MyBookCardState extends State<MyBookCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: (MediaQuery.of(context).size.width) / 2,
-            height: 200,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(widget.book.cover),
+          Padding(
+            padding: EdgeInsets.only(top: 8, left: 8, bottom: 8, right: 0),
+            child: Container(
+              width: (MediaQuery.of(context).size.width) /3,
+              height: (MediaQuery.of(context).size.width)/3*1.51,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10) ,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(widget.book.cover),
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: (MediaQuery.of(context).size.width)/15),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
