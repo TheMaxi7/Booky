@@ -5,15 +5,15 @@ import 'package:booky/sample_data.dart';
 
 
 
-class BookColumn extends StatefulWidget{
-  const BookColumn({super.key});
+class MyLibrary extends StatefulWidget{
+  const MyLibrary({super.key});
 
   @override
-  State<BookColumn> createState() => _BookColumnState();
+  State<MyLibrary> createState() => _MyLibraryState();
 
 }
 
-class _BookColumnState extends State<BookColumn>{
+class _MyLibraryState extends State<MyLibrary>{
   @override
   Widget build(BuildContext context) {
     return ListView.separated(

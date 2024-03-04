@@ -43,7 +43,11 @@ class BookyTheme {
       ),
       cardTheme: const CardTheme(
         color: Color(0xFFDCE2EB),
-
+      ),
+      tabBarTheme: const TabBarTheme(
+        unselectedLabelColor: Color(0xFF58595B),
+        indicatorColor: Color(0xFFFF4713),
+        labelColor: Color(0xFFFF4713),
       ),
     );
   }

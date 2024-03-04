@@ -1,6 +1,7 @@
 import 'package:booky/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'book_column.dart';
+import 'my_library.dart';
+import 'notes.dart';
 
 void main() {
   runApp( BookyApp());
@@ -17,7 +18,10 @@ class BookyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: "",
-      home: const BookyAppHome(title:"My Library"),
+      home: const DefaultTabController(
+        length: 3,
+        child: BookyAppHome(title:"My Library"),
+      ),
 
       );
   }
@@ -39,9 +43,10 @@ class _BookyAppHomeState extends State<BookyAppHome>{
   int _selectedIconIndex=0;
 
   final List<Widget> _screens = <Widget>[
-    const BookColumn(),
+    const MyLibrary(),
     Container(color: Colors.green),
     Container(color: Colors.blue),
+    const Notes(),
   ];
 
   final List<String> _titles = <String>[
@@ -55,7 +60,13 @@ class _BookyAppHomeState extends State<BookyAppHome>{
     return Scaffold(
       backgroundColor: const Color(0xFFDCE2EB),
       appBar: AppBar(
-
+        bottom: const TabBar(
+          tabs: [
+            Tab(text: "Books"),
+            Tab(text: "Shelves"),
+            Tab(text: "Wishlist"),
+          ],
+        ),
         title: Text(_titles[_selectedIconIndex], style: Theme.of(context).textTheme.headlineMedium,),
         leading: Builder(
           builder: (context) => IconButton(

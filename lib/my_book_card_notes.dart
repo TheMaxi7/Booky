@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 
-class MyBookCard extends StatefulWidget{
-  const MyBookCard({super.key, required this.book});
+class MyBookCardNotes extends StatefulWidget{
+  const MyBookCardNotes({super.key, required this.book});
 
   final Book book;
 
   @override
-  State<MyBookCard> createState() => _MyBookCardState();
+  State<MyBookCardNotes> createState() => _MyBookCardNotesState();
 
 }
 
-class _MyBookCardState extends State<MyBookCard> {
+class _MyBookCardNotesState extends State<MyBookCardNotes> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -50,8 +50,8 @@ class _MyBookCardState extends State<MyBookCard> {
                   padding: const EdgeInsets.only(top: 8, bottom: 4),
                   child: Text(
                     widget.book.name, style: Theme.of(context).textTheme.headlineMedium,
-                    ),
                   ),
+                ),
                 Text(
                   widget.book.author,style: Theme.of(context).textTheme.headlineSmall,
 
