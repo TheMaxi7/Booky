@@ -15,7 +15,7 @@ class BookyTheme {
       bodyMedium: GoogleFonts.exo(
           fontSize: 14,
           fontWeight: FontWeight.normal,
-          color: const Color(0xFF141D29)
+          color: const Color(0xFF58595B)
       ),
       bodySmall: GoogleFonts.exo(
       fontSize: 12,
@@ -26,12 +26,15 @@ class BookyTheme {
 
   static ThemeData normal(){
     return ThemeData(
-      useMaterial3: false,
+      useMaterial3: true,
       textTheme: normalTextTheme,
       colorScheme: ColorScheme.fromSwatch(
         accentColor: const Color(0xFFFF4713),
       ),
       appBarTheme:  AppBarTheme(
+        elevation: 2.0,
+        surfaceTintColor: const Color(0xFFDCE2EB),
+        shadowColor: const Color(0xFF141D29),
         backgroundColor: const Color(0xFFDCE2EB),
         foregroundColor: const Color(0xFF141D29),
         titleTextStyle: normalTextTheme.titleMedium,
@@ -49,6 +52,8 @@ class BookyTheme {
         indicatorColor: Color(0xFFFF4713),
         labelColor: Color(0xFFFF4713),
       ),
+      scaffoldBackgroundColor: const Color(0xFFDCE2EB),
+
     );
   }
 }

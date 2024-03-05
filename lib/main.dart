@@ -4,43 +4,39 @@ import 'my_library.dart';
 import 'notes.dart';
 
 void main() {
-  runApp( BookyApp());
+  runApp(BookyApp());
 }
 
-class BookyApp extends StatelessWidget{
+class BookyApp extends StatelessWidget {
   BookyApp({super.key});
 
   final ThemeData appTheme = BookyTheme.normal();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: "",
       home: const DefaultTabController(
         length: 3,
-        child: BookyAppHome(title:"My Library"),
+        child: BookyAppHome(title: "My Library"),
       ),
-
-      );
+    );
   }
-
 }
 
-class BookyAppHome extends StatefulWidget{
-
+class BookyAppHome extends StatefulWidget {
   const BookyAppHome({super.key, required this.title});
 
   final String title;
+
   @override
   State<BookyAppHome> createState() => _BookyAppHomeState();
-
 }
 
-class _BookyAppHomeState extends State<BookyAppHome>{
-
-  int _selectedIconIndex=0;
+class _BookyAppHomeState extends State<BookyAppHome> {
+  int _selectedIconIndex = 0;
 
   final List<Widget> _screens = <Widget>[
     const MyLibrary(),
@@ -55,28 +51,12 @@ class _BookyAppHomeState extends State<BookyAppHome>{
     "Dashboard",
     "Notes",
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFDCE2EB),
-      appBar: AppBar(
-        bottom: const TabBar(
-          tabs: [
-            Tab(text: "Books"),
-            Tab(text: "Shelves"),
-            Tab(text: "Wishlist"),
-          ],
-        ),
-        title: Text(_titles[_selectedIconIndex], style: Theme.of(context).textTheme.headlineMedium,),
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-      ),
-      drawer:  Drawer(
-
+      extendBody: true,
+      drawer: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -84,7 +64,7 @@ class _BookyAppHomeState extends State<BookyAppHome>{
               padding: EdgeInsets.zero,
               child: Container(
                 height: 15,
-                color:Colors.blue,
+                color: Colors.blue,
               ),
             ),
             const Text("Child1"),
@@ -93,16 +73,27 @@ class _BookyAppHomeState extends State<BookyAppHome>{
           ],
         ),
       ),
-      body: IndexedStack(
-        index:_selectedIconIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
+      body: _screens[_selectedIconIndex],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(10.0),
+        topRight: Radius.circular(10.0),
+        ), child: BottomNavigationBar(
+        //elevation: 2.0,
+        //backgroundColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIconIndex,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
-            _selectedIconIndex=index;
+            _selectedIconIndex = index;
           });
         },
         items: const [
@@ -123,6 +114,8 @@ class _BookyAppHomeState extends State<BookyAppHome>{
             label: "Notes",
           ),
         ],
+      ),
+      ),
       ),
     );
   }
