@@ -1,5 +1,8 @@
+import 'package:booky/quote.dart';
+import 'package:booky/sample_data.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
+
 
 class MyBookCardNotes extends StatefulWidget{
   const MyBookCardNotes({super.key, required this.book});
@@ -48,26 +51,52 @@ class _MyBookCardNotesState extends State<MyBookCardNotes> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 4),
-                  child: Text(
-                    widget.book.name, style: Theme.of(context).textTheme.headlineMedium,
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: (MediaQuery.of(context).size.width) / 5 * 1.51, // Set width to occupy available space
+                    child: Text(
+                      findFavourite(widget.book),
+                      style: Theme.of(context).textTheme.headlineSmall,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: (((MediaQuery.of(context).size.width) / 5 * 1.51)/2)~/10, // Add this line
+                    ),
                   ),
                 ),
-                Text(
-                  widget.book.author,style: Theme.of(context).textTheme.headlineSmall,
+                OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF58595B)),
 
+                    backgroundColor: const Color(0xFF141d29),
+                    fixedSize: const Size(100, 0),
+                  ),
+                  child: Text('Add note', style: Theme.of(context).textTheme.bodySmall, selectionColor: const Color(0xFFdce2eb),),
                 ),
-                Text(
-                  'Genre: ${widget.book.genre}',style: Theme.of(context).textTheme.bodyMedium,
-
-                ),
-                Text(
-                  'Pages: ${widget.book.pages.toString()}',
+                const Text(
+                "view all",
                 ),
               ],
             ),
           ),
+
+
         ],
       ),
     );
   }
 }
+
+
+String findFavourite(Book book) {
+  String favoriteQuote = "No quote selected"; // Default message
+
+  for (int i = 0; i < book.quotes.length; i++) {
+    if (book.quotes[i].favourite) {
+      favoriteQuote = book.quotes[i].quote;
+      break; // Exit loop once favorite quote is found
+    }
+  }
+
+  return favoriteQuote;
+}
+

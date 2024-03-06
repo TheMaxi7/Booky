@@ -39,9 +39,9 @@ class SampleData {
     quotes : [
       Quote(
         index: 1,
-        quote: "If you can’t learn, you can’t thrive.",
+        quote: "If you can’t learn, you can’t yolo.agarsgefkjlarhbgvlikaebgrvliqehvcobrlighvlkbaio;v o;agh ;oabjrgil;oaehg p'g;oaehg'p NRG ;ONGV;'LAN;OG HJGN ;AEOR HMN",
         page: 111,
-        favourite: true,
+        favourite: false,
       )
     ],
     notes : [
@@ -64,7 +64,7 @@ class SampleData {
     quotes : [
       Quote(
         index: 1,
-        quote: "If you can’t learn, you can’t thrive.",
+        quote: "If you can’t learn, you can’t yolo.agarsgefkjlarhbgvlikaebgrvliqehvcobrlighvlkbaio;v o;agh ;oabjrgil;oaehg p'g;oaehg'p NRG ;ONGV;'LAN;OG HJGN ;AEOR HMN",
         page: 111,
         favourite: true,
       )

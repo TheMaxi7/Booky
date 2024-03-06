@@ -1,3 +1,4 @@
+import 'package:booky/notes.dart';
 import 'package:flutter/material.dart';
 import 'my_library.dart';
 import 'package:booky/app_theme.dart';
@@ -15,10 +16,7 @@ class BookyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: "",
-      home: const DefaultTabController(
-        length: 5,
-        child: BookyAppHome(title: "My Library"),
-      ),
+      home: const BookyAppHome(title: "My Library"),
     );
   }
 
@@ -42,12 +40,15 @@ class _BookyAppHomeState extends State<BookyAppHome> {
     const MyLibrary(),
     Container(color: Colors.green),
     Container(color: Colors.blue),
+    const Notes(),
   ];
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+        length: _selectedIconIndex == 0 ? 3 : 2,
+        child: Scaffold(
       backgroundColor: const Color(0xFFDCE2EB),
       appBar: _buildAppBar(_selectedIconIndex),
       extendBody: true,
@@ -116,6 +117,7 @@ class _BookyAppHomeState extends State<BookyAppHome> {
           ),
         ),
       ),
+        ),
     );
   }
 
