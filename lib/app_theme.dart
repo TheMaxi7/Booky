@@ -48,6 +48,7 @@ class BookyTheme {
         color: Color(0xFFDCE2EB),
       ),
       tabBarTheme: const TabBarTheme(
+        dividerColor: Colors.transparent,
         unselectedLabelColor: Color(0xFF58595B),
         indicatorColor: Color(0xFFFF4713),
         labelColor: Color(0xFFFF4713),
