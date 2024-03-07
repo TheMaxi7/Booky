@@ -2,7 +2,7 @@ import 'package:booky/data_manager.dart';
 import 'package:booky/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'my_library.dart';
+import 'my_library_books.dart';
 import 'package:booky/app_theme.dart';
 import 'explore.dart';
 void main() {
@@ -39,22 +39,29 @@ class BookyAppHome extends StatefulWidget{
 
 }
 
-class _BookyAppHomeState extends State<BookyAppHome> {
+class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMixin{
   int _selectedIconIndex = 0;
 
-  final List<Widget> _screens = <Widget>[
-    const MyLibrary(),
-    Explore(),
-    Container(color: Colors.blue),
-    const Notes(),
-  ];
+  late TabController _myLibraryTabController;
+  late TabController _dashboardTabController;
 
+  @override
+  void initState() {
+    super.initState();
+    _myLibraryTabController = TabController(length: 3, vsync: this);
+    _dashboardTabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _myLibraryTabController.dispose();
+    _dashboardTabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: _selectedIconIndex == 0 ? 3 : 2,
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: const Color(0xFFDCE2EB),
       appBar: _buildAppBar(_selectedIconIndex),
       extendBody: true,
@@ -77,13 +84,32 @@ class _BookyAppHomeState extends State<BookyAppHome> {
       ),
       body: IndexedStack(
         index: _selectedIconIndex,
-        children: _screens,
+        children: [
+          TabBarView(
+            controller: _myLibraryTabController,
+            children: [
+              MyLibraryBooks(),
+              Container(color: Colors.blue),
+              Container(color: Colors.red),
+            ],
+          ),
+
+          Explore(),
+          TabBarView(
+            controller: _dashboardTabController,
+            children: [
+              Container(color: Colors.green),
+              Container(color: Colors.blue),
+            ],
+          ),
+          Notes(),
+        ],
       ),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(10),
-              topLeft: Radius.circular(10)
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
           ),
           boxShadow: [
             BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
@@ -123,14 +149,16 @@ class _BookyAppHomeState extends State<BookyAppHome> {
           ),
         ),
       ),
-        ),
     );
+
+
   }
 
 
   PreferredSizeWidget _buildAppBar(int selectedIconIndex) {
     PreferredSizeWidget buildMyLibraryAppBar() {
       return AppBar(
+
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
@@ -153,13 +181,14 @@ class _BookyAppHomeState extends State<BookyAppHome> {
             onPressed: () {},
           )
         ],
-        bottom: const TabBar(
-          tabs: [
-            Tab(text: "Books"),
-            Tab(text: "Shelves"),
-            Tab(text: "Wishlist"),
-          ],
-        ),
+        bottom: TabBar(
+            controller: _myLibraryTabController,
+            tabs: const [
+              Tab(text: "Books"),
+              Tab(text: "Shelves"),
+              Tab(text: "Wishlist"),
+            ],
+          ),
         leading: Builder(
           builder: (context) =>
               IconButton(
@@ -220,8 +249,9 @@ class _BookyAppHomeState extends State<BookyAppHome> {
           ),
         ),
         title: const Text('Dashboard'),
-        bottom: const TabBar(
-          tabs: [
+        bottom: TabBar(
+          controller: _dashboardTabController,
+          tabs: const [
             Tab(text: "Challenges"),
             Tab(text: "Statistics"),
           ],
@@ -266,8 +296,9 @@ class _BookyAppHomeState extends State<BookyAppHome> {
     PreferredSizeWidget buildDefaultAppBar() {
       return AppBar(
         title: const Text('My Library'),
-        bottom: const TabBar(
-          tabs: [
+        bottom: TabBar(
+          controller: _myLibraryTabController,
+          tabs: const [
             Tab(text: "Books"),
             Tab(text: "Shelves"),
             Tab(text: "Wishlist"),
