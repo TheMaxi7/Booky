@@ -1,4 +1,6 @@
 import 'package:booky/data_manager.dart';
+import 'package:booky/my_library_shelves.dart';
+import 'package:booky/my_library_wishlist.dart';
 import 'package:booky/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +43,7 @@ class BookyAppHome extends StatefulWidget{
 
 class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMixin{
   int _selectedIconIndex = 0;
+  int _currentMyLibIndex = 0;
 
   late TabController _myLibraryTabController;
   late TabController _dashboardTabController;
@@ -50,7 +53,15 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
     super.initState();
     _myLibraryTabController = TabController(length: 3, vsync: this);
     _dashboardTabController = TabController(length: 2, vsync: this);
+    _myLibraryTabController.addListener(_tabChanged);
   }
+
+  void _tabChanged() {
+    setState(() {
+      _currentMyLibIndex = _myLibraryTabController.index;
+    });
+  }
+
 
   @override
   void dispose() {
@@ -87,10 +98,10 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
         children: [
           TabBarView(
             controller: _myLibraryTabController,
-            children: [
+            children: const [
               MyLibraryBooks(),
-              Container(color: Colors.blue),
-              Container(color: Colors.red),
+              MyLibraryShelves(),
+              MyLibraryWishlist(),
             ],
           ),
 
@@ -158,7 +169,6 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
   PreferredSizeWidget _buildAppBar(int selectedIconIndex) {
     PreferredSizeWidget buildMyLibraryAppBar() {
       return AppBar(
-
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),
@@ -173,28 +183,28 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
             ),
             onPressed: () {},
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-              color: Color(0xFF58595B),
+          if (_currentMyLibIndex == 0)
+            IconButton(
+              icon: const Icon(
+                Icons.add,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
-          )
         ],
         bottom: TabBar(
-            controller: _myLibraryTabController,
-            tabs: const [
-              Tab(text: "Books"),
-              Tab(text: "Shelves"),
-              Tab(text: "Wishlist"),
-            ],
-          ),
+          controller: _myLibraryTabController,
+          tabs: const [
+            Tab(text: "Books"),
+            Tab(text: "Shelves"),
+            Tab(text: "Wishlist"),
+          ],
+        ),
         leading: Builder(
-          builder: (context) =>
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
       );
     }
@@ -217,7 +227,7 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight + 10), // Adjust height as needed
+          preferredSize: const Size.fromHeight(kToolbarHeight + 10),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             color: Theme.of(context).primaryColor,

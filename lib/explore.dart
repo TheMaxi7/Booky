@@ -59,7 +59,7 @@ class _ExploreState extends State<Explore> {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),
-                      itemCount: manager.allBooks.length,
+                      itemCount: manager.bestsellersBooks.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
@@ -68,12 +68,12 @@ class _ExploreState extends State<Explore> {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return BookInfo(
-                                      book: manager.allBooks[index]);
+                                      book: manager.bestsellersBooks[index]);
                                 },
                               ),
                             );
                           },
-                          child: ExploreBookCard(book: manager.allBooks[index]),
+                          child: ExploreBookCard(book: manager.bestsellersBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {
@@ -96,11 +96,10 @@ class _ExploreState extends State<Explore> {
                   const SizedBox(height: 8),
                   SizedBox(
                     height: 180,
-                    child: manager.allBooks.isEmpty ? Text("You have no favourite recipes",
-                        style: Theme.of(context).textTheme.bodyLarge) : ListView.separated(
+                    child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),
-                      itemCount: manager.allBooks.length,
+                      itemCount: manager.newReleasesBooks.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
@@ -109,13 +108,13 @@ class _ExploreState extends State<Explore> {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return BookInfo(
-                                      book: manager.allBooks[index]);
+                                      book: manager.newReleasesBooks[index]);
                                 },
                               ),
                             );
                           },
                           child:
-                          ExploreBookCard(book: manager.allBooks[index]),
+                          ExploreBookCard(book: manager.newReleasesBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {
@@ -141,7 +140,7 @@ class _ExploreState extends State<Explore> {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),
-                      itemCount: manager.allBooks.length,
+                      itemCount: manager.forYouBooks.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
@@ -150,12 +149,12 @@ class _ExploreState extends State<Explore> {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return BookInfo(
-                                      book: manager.allBooks[index]);
+                                      book: manager.forYouBooks[index]);
                                 },
                               ),
                             );
                           },
-                          child: ExploreBookCard(book: manager.allBooks[index]),
+                          child: ExploreBookCard(book: manager.forYouBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {

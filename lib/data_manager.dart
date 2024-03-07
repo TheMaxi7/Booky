@@ -5,14 +5,16 @@ import 'package:booky/sample_data.dart';
 class DataManager extends ChangeNotifier {
 
   final List<Book> _allBooks = SampleData.allBooks;
-  //final List<Recipe> _recipesOfTheDay = SampleData.recipesOfTheDay;
-  //final List<Recipe> _favouriteRecipes = SampleData.favouriteRecipes;
-  //final List<Recipe> _asianRecipes = SampleData.asianRecipes;
+  final List<Book> _bestsellersBooks = SampleData.bestsellersBooks;
+  final List<Book> _forYouBooks = SampleData.forYouBooks;
+  final List<Book> _newReleasesBooks = SampleData.newReleasesBooks;
+
 
   List<Book> get allBooks => List.unmodifiable(_allBooks);
-  //List<Recipe> get recipesOfTheDay => List.unmodifiable(_recipesOfTheDay);
-  //List<Recipe> get favouriteRecipes => List.unmodifiable(_favouriteRecipes);
-  //List<Recipe> get asianRecipes => List.unmodifiable(_asianRecipes);
+  List<Book> get bestsellersBooks => List.unmodifiable(_bestsellersBooks);
+  List<Book> get forYouBooks => List.unmodifiable(_forYouBooks);
+  List<Book> get newReleasesBooks => List.unmodifiable(_newReleasesBooks);
+
 
   //void _deleteFavouriteRecipe(int index){
   //  _favouriteRecipes.removeAt(index);
