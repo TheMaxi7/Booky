@@ -1,7 +1,9 @@
 import 'package:booky/book_info.dart';
+import 'package:booky/data_manager.dart';
 import 'package:booky/my_book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/sample_data.dart';
+import 'package:provider/provider.dart';
 
 
 class MyLibraryWishlist extends StatefulWidget{
@@ -17,6 +19,8 @@ class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<DataManager>(
+        builder: (context, manager, child) {
     return ListView.separated(
       itemBuilder: (context, index) {
         if (index == 0) {
@@ -57,13 +61,13 @@ class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
                 MaterialPageRoute(
                   builder: (context) {
                     return BookInfo(
-                      book: SampleData.allBooks[bookIndex],
+                      book: manager.myWishlist[bookIndex],
                     );
                   },
                 ),
               );
             },
-            child: MyBookCard(book: SampleData.allBooks[bookIndex]),
+            child: MyBookCard(book: manager.myWishlist[bookIndex]),
           );
         }
       },
@@ -73,7 +77,9 @@ class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
           height: 8,
         );
       },
-      itemCount: SampleData.allBooks.length + 1,
+      itemCount: manager.myWishlist.length + 1,
+    );
+        }
     );
   }
 }

@@ -246,6 +246,45 @@ class SampleData {
     ],
   );
 
+  static Book book11 = Book(
+    name : "Reckless",
+    author: "Lauren Roberts",
+    cover : 'assets/images/reckless.jpg',
+    description : "The second heart-racing instalment in this bestselling and sizzling fantasy romance trilogy. Perfect for fans of Red Queen and The Hunger Games.The kingdom of Ilya is in turmoil…After surviving the Purging Trials, Ordinary-born Paedyn Gray has killed the King, and kickstarted a Resistance throughout the land. Now she’s running from the one person she had wanted to run to.Kai Azer is now Ilya’s Enforcer, loyal to his brother Kitt, the new King. He has vowed to find Paedyn and bring her to justice.Across the deadly Scorches, and deep into the hostile city of Dor, Kai pursues the one person he wishes he didn’t have to. But in a city without Elites, the balance between the hunter and hunted shifts – and the battle between duty and desire is deadly.Be swept away by this bestselling, kiss-or-kill romantasy trilogy taking the world by storm.",
+    pages : 512,
+    genre : "Fantasy",
+    quotes : [
+    ],
+    notes : [
+    ],
+  );
+
+  static Book book12 = Book(
+    name : "House of Flame and Shadow",
+    author: "Sarah J. Maas",
+    cover : 'assets/images/house.jpg',
+    description : "The stunning third book in the sexy, action-packed Crescent City series, following the global bestsellers House of Earth and Blood and House of Sky and Breath.Bryce Quinlan never expected to see a world other than Midgard, but now that she has, all she wants is to get back. Everything she loves is in Midgard: her family, her friends, her mate. Stranded in a strange new world, she's going to need all her wits about her to get home again. And that's no easy feat when she has no idea who to trust.Hunt Athalar has found himself in some deep holes in his life, but this one might be the deepest of all. After a few brief months with everything he ever wanted, he's in the Asteri's dungeons again, stripped of his freedom and without a clue as to Bryce's fate. He's desperate to help her, but until he can escape the Asteri's leash, his hands are quite literally tied.In this sexy, breathtaking sequel to the #1 bestsellers House of Earth and Blood and House of Sky and Breath, Sarah J. Maas's Crescent City series reaches new heights as Bryce and Hunt's world is brought to the brink of collapse-with its future resting on their shoulders.",
+    pages : 816,
+    genre : "Fantasy",
+    quotes : [
+    ],
+    notes : [
+    ],
+  );
+
+  static Book book13 = Book(
+    name : "Somewhere Beyond the Sea",
+    author: "T.J. Klune",
+    cover : 'assets/images/somewhere.jpg',
+    description : "Somewhere Beyond the Sea is the hugely anticipated sequel to TJ Klune’s The House in the Cerulean Sea, one of the best-loved and best-selling fantasy novels of the past decade. Featuring gorgeous orange sprayed edges!A magical house. A secret past. A summons that could change everything.Arthur Parnassus lives a good life built on the ashes of a bad one.He’s the master of a strange orphanage on a distant and peculiar island, and he hopes to soon be the adoptive father to the six dangerous and magical children who live there.Arthur works hard and loves with his whole heart so none of the children ever feel the neglect and pain that he once felt as an orphan on that very same island so long ago. He is not alone: joining him is the love of his life, Linus Baker, a former caseworker in the Department In Charge of Magical Youth. And there’s the island’s sprite, Zoe Chapelwhite, and her girlfriend, Mayor Helen Webb. Together, they will do anything to protect the children.But when Arthur is summoned to make a public statement about his dark past, he finds himself at the helm of a fight for the future that his family, and all magical people, deserve.And when a new magical child hopes to join them on their island home—one who finds power in calling himself monster, a name that Arthur worked so hard to protect his children from—Arthur knows they’re at a breaking point: their family will either grow stronger than ever or fall apart.back to Marsyas Island. This is Arthur’s story.Somewhere Beyond the Sea is a story of resistance, lovingly told, about the daunting experience of fighting for the life you want to live and doing the work to keep it.",
+    pages : 212,
+    genre : "Nonfiction",
+    quotes : [
+    ],
+    notes : [
+    ],
+  );
+
 
   static List<Book> allBooks = [
     book1,
@@ -257,26 +296,40 @@ class SampleData {
     book7,
     book8,
     book9,
+    book10,
+    book11,
+    book12,
+    book13,
+  ];
+
+  static List<Book> myBooks = [
+    book1,
+    book2,
+    book3,
+    book9,
     book10
   ];
 
   static List<Book> bestsellersBooks = [
-    book1,
-    book2,
-    book10,
+    book7,
     book8,
+    book4,
   ];
 
   static List<Book> forYouBooks = [
-    book7,
-    book6,
-    book5
+    book4,
+    book5,
+    book6
   ];
 
   static List<Book> newReleasesBooks = [
-    book4,
-    book9,
-    book3
+    book11,
+    book12,
+    book13,
+  ];
+
+  static List<Book> myWishlist = [
+    book13,
   ];
 
 }
