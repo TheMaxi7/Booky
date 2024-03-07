@@ -1,7 +1,10 @@
+import 'package:booky/data_manager.dart';
 import 'package:booky/notes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'my_library.dart';
 import 'package:booky/app_theme.dart';
+import 'explore.dart';
 void main() {
   runApp(BookyApp());
 }
@@ -9,18 +12,22 @@ void main() {
 class BookyApp extends StatelessWidget{
   BookyApp({super.key});
   final ThemeData appTheme = BookyTheme.normal();
+  final DataManager _dataManager = DataManager();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-
-      debugShowCheckedModeBanner: false,
-      theme: appTheme,
-      title: "",
-      home: const BookyAppHome(title: "My Library"),
+    return ChangeNotifierProvider<DataManager>(
+      create: (_) => _dataManager,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: appTheme,
+        title: "",
+        home: const BookyAppHome(title: "My Library"),
+      ),
     );
   }
-
 }
+
+
 
 class BookyAppHome extends StatefulWidget{
 
@@ -33,12 +40,11 @@ class BookyAppHome extends StatefulWidget{
 }
 
 class _BookyAppHomeState extends State<BookyAppHome> {
-
   int _selectedIconIndex = 0;
 
   final List<Widget> _screens = <Widget>[
     const MyLibrary(),
-    Container(color: Colors.green),
+    Explore(),
     Container(color: Colors.blue),
     const Notes(),
   ];

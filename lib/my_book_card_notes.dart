@@ -31,10 +31,10 @@ class _MyBookCardNotesState extends State<MyBookCardNotes> {
                 borderRadius: BorderRadius.circular(5) ,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.5), // Shadow color
-                    spreadRadius: 3, // Spread radius
-                    blurRadius: 5, // Blur radius
-                    offset: const Offset(0, 3), // Offset
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
                   ),
                 ],
                 image: DecorationImage(
@@ -53,12 +53,12 @@ class _MyBookCardNotesState extends State<MyBookCardNotes> {
                   padding: const EdgeInsets.only(top: 8, bottom: 4),
                   child: SizedBox(
                     width: double.infinity,
-                    height: (MediaQuery.of(context).size.width) / 5 * 1.51, // Set width to occupy available space
+                    height: (MediaQuery.of(context).size.width) / 5 * 1.51,
                     child: Text(
                       findFavourite(widget.book),
                       style: Theme.of(context).textTheme.headlineSmall,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: (((MediaQuery.of(context).size.width) / 5 * 1.51)/2)~/10, // Add this line
+                      maxLines: (((MediaQuery.of(context).size.width) / 5 * 1.51)/2)~/10,
                     ),
                   ),
                 ),
@@ -88,12 +88,12 @@ class _MyBookCardNotesState extends State<MyBookCardNotes> {
 
 
 String findFavourite(Book book) {
-  String favoriteQuote = "No quote selected"; // Default message
+  String favoriteQuote = "No quote selected";
 
   for (int i = 0; i < book.quotes.length; i++) {
     if (book.quotes[i].favourite) {
       favoriteQuote = book.quotes[i].quote;
-      break; // Exit loop once favorite quote is found
+      break;
     }
   }
 
