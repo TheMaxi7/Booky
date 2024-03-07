@@ -1,5 +1,6 @@
 
 import 'package:booky/explore_book_card.dart';
+import 'package:booky/explore_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data_manager.dart';
@@ -67,7 +68,7 @@ class _ExploreState extends State<Explore> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return BookInfo(
+                                  return ExploreBookInfo(
                                       book: manager.bestsellersBooks[index]);
                                 },
                               ),
@@ -107,7 +108,7 @@ class _ExploreState extends State<Explore> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return BookInfo(
+                                  return ExploreBookInfo(
                                       book: manager.newReleasesBooks[index]);
                                 },
                               ),
@@ -148,7 +149,7 @@ class _ExploreState extends State<Explore> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return BookInfo(
+                                  return ExploreBookInfo(
                                       book: manager.forYouBooks[index]);
                                 },
                               ),

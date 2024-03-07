@@ -1,16 +1,17 @@
 import 'package:booky/book.dart';
 import 'package:flutter/material.dart';
+import 'package:expandable_text/expandable_text.dart';
 
-class BookInfo extends StatefulWidget {
-  const BookInfo({super.key, required this.book});
+class ExploreBookInfo extends StatefulWidget {
+  const ExploreBookInfo({super.key, required this.book});
 
   final Book book;
 
   @override
-  State<BookInfo> createState() => _BookInfoState();
+  State<ExploreBookInfo> createState() => _ExploreBookInfoState();
 }
 
-class _BookInfoState extends State<BookInfo> {
+class _ExploreBookInfoState extends State<ExploreBookInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +19,29 @@ class _BookInfoState extends State<BookInfo> {
           backgroundColor: const Color(0xFFDCE2EB),
           title: Text(widget.book.name,
               style: const TextStyle(color: Color(0xFF141D29))),
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.share,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.add_alert_rounded,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.star,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
         body: ListView(
           children: [
@@ -84,10 +108,43 @@ class _BookInfoState extends State<BookInfo> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-              child: Text(widget.book.description),
+              child: ExpandableText(
+                widget.book.description,
+                expandText: 'show more',
+                collapseText: 'show less',
+                maxLines: 5,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF58595B)),
+                    backgroundColor: const Color(0xFF141d29),
+                    fixedSize:
+                        Size((MediaQuery.of(context).size.width) / 2.2, 10),
+                  ),
+                  child: Text('Add to shelf',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color(0xFFDCE2EB))),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF58595B)),
+                    backgroundColor: const Color(0xFFDCE2EB),
+                    fixedSize:
+                        Size((MediaQuery.of(context).size.width) / 2.2, 10),
+                  ),
+                  child:
+                      Text('Buy', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color(0xFF141d29) )),
+                ),
+              ],
             ),
           ],
-        )
-    );
+        ));
   }
 }
