@@ -48,11 +48,13 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
   late TabController _myLibraryTabController;
   late TabController _dashboardTabController;
 
+
   @override
   void initState() {
     super.initState();
     _myLibraryTabController = TabController(length: 3, vsync: this);
     _dashboardTabController = TabController(length: 2, vsync: this);
+
     _myLibraryTabController.addListener(_tabChanged);
   }
 
@@ -67,6 +69,7 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
   void dispose() {
     _myLibraryTabController.dispose();
     _dashboardTabController.dispose();
+
     super.dispose();
   }
 

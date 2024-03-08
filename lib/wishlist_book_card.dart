@@ -1,17 +1,17 @@
-import 'package:booky/book_info.dart';
+import 'package:booky/wishlist_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 
-class MyBookCard extends StatefulWidget {
-  const MyBookCard({Key? key, required this.book}) : super(key: key);
+class WishlistBookCard extends StatefulWidget {
+  const WishlistBookCard({Key? key, required this.book}) : super(key: key);
 
   final Book book;
 
   @override
-  State<MyBookCard> createState() => _MyBookCardState();
+  State<WishlistBookCard> createState() => _WishlistBookCardState();
 }
 
-class _MyBookCardState extends State<MyBookCard> {
+class _WishlistBookCardState extends State<WishlistBookCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,7 +24,7 @@ class _MyBookCardState extends State<MyBookCard> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BookInfo(book: widget.book),
+                  builder: (context) => WishlistBookInfo(book: widget.book),
                 ),
               );
             },

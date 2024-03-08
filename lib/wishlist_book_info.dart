@@ -1,17 +1,17 @@
 import 'package:booky/book.dart';
-import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:expandable_text/expandable_text.dart';
 
-class BookInfo extends StatefulWidget {
-  const BookInfo({super.key, required this.book});
+class WishlistBookInfo extends StatefulWidget {
+  const WishlistBookInfo({super.key, required this.book});
 
   final Book book;
 
   @override
-  State<BookInfo> createState() => _BookInfoState();
+  State<WishlistBookInfo> createState() => _WishlistBookInfoState();
 }
 
-class _BookInfoState extends State<BookInfo> {
+class _WishlistBookInfoState extends State<WishlistBookInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +19,29 @@ class _BookInfoState extends State<BookInfo> {
           backgroundColor: const Color(0xFFDCE2EB),
           title: Text(widget.book.name,
               style: const TextStyle(color: Color(0xFF141D29))),
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.share,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.add_alert_rounded,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.star,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
         body: ListView(
           children: [
@@ -92,8 +115,36 @@ class _BookInfoState extends State<BookInfo> {
                 maxLines: 5,
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF58595B)),
+                    backgroundColor: const Color(0xFF141d29),
+                    fixedSize:
+                    Size((MediaQuery.of(context).size.width) / 2.2, 10),
+                  ),
+                  child: Text('Add to shelf',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color(0xFFDCE2EB))),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF58595B)),
+                    backgroundColor: const Color(0xFFDCE2EB),
+                    fixedSize:
+                    Size((MediaQuery.of(context).size.width) / 2.2, 10),
+                  ),
+                  child:
+                  Text('Buy', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color(0xFF141d29) )),
+                ),
+              ],
+            ),
           ],
-        )
-    );
+        ));
   }
 }

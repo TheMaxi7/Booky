@@ -1,32 +1,36 @@
+import 'package:booky/book.dart';
+import 'package:booky/book_info.dart';
+import 'package:booky/notes_column.dart';
 import 'package:flutter/material.dart';
-import 'package:booky/data_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:booky/notes_book_card.dart';
+import 'data_manager.dart';
 
-class Notes extends StatefulWidget {
-  const Notes({Key? key}) : super(key: key);
+class NotesTab extends StatefulWidget {
+  final Book book;
+  const NotesTab({super.key, required this.book});
 
   @override
-  State<Notes> createState() => _NotesState();
+  State<NotesTab> createState() => _NotesTabState();
 }
 
-class _NotesState extends State<Notes> {
+class _NotesTabState extends State<NotesTab> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DataManager>(
       builder: (context, manager, child) {
         return ListView.separated(
           itemBuilder: (context, index) {
-            return NotesBookCard(book: manager.myBooks[index]);
+            return BookNotes(notes: widget.book.notes);
           },
           separatorBuilder: (context, index) {
             return const SizedBox(
               height: 8,
             );
           },
-          itemCount: manager.myBooks.length,
+          itemCount: 1,
         );
       },
     );
   }
 }
+
