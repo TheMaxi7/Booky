@@ -18,7 +18,7 @@ class BookyTheme {
           color: const Color(0xFF58595B)
       ),
       bodySmall: GoogleFonts.exo(
-      fontSize: 12,
+      fontSize: 8,
       fontWeight: FontWeight.normal,
       color: const Color(0xFF141D29)
   )

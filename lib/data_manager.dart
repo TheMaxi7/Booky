@@ -1,6 +1,8 @@
+import 'package:booky/challenges.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 import 'package:booky/sample_data.dart';
+
 
 class DataManager extends ChangeNotifier {
 
@@ -10,6 +12,8 @@ class DataManager extends ChangeNotifier {
   final List<Book> _newReleasesBooks = SampleData.newReleasesBooks;
   final List<Book> _myBooks = SampleData.myBooks;
   final List<Book> _myWishlist = SampleData.myWishlist;
+  final List<Challenge> _challenges = SampleData.allChallenges;
+
 
 
   List<Book> get allBooks => List.unmodifiable(_allBooks);
@@ -18,6 +22,7 @@ class DataManager extends ChangeNotifier {
   List<Book> get newReleasesBooks => List.unmodifiable(_newReleasesBooks);
   List<Book> get myBooks => List.unmodifiable(_myBooks);
   List<Book> get myWishlist => List.from(_myWishlist);
+  List<Challenge> get allChallenges => List.from(_challenges);
 
 
   void _removeBookFromWishlist(Book item) {

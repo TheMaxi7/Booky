@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'my_library_books.dart';
 import 'package:booky/app_theme.dart';
 import 'explore.dart';
+import 'dashboard_challenges.dart';
 void main() {
   runApp(BookyApp());
 }
@@ -112,7 +113,7 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
           TabBarView(
             controller: _dashboardTabController,
             children: [
-              Container(color: Colors.green),
+              DashboardChallengesTab(),
               Container(color: Colors.blue),
             ],
           ),

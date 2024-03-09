@@ -1,8 +1,58 @@
 import 'quote.dart';
 import 'note.dart';
 import 'book.dart';
+import 'challenges.dart';
 
 class SampleData {
+
+  static Challenge challenge1 = Challenge(
+    name: "Genre Explorer",
+    info: "agrsgarga",
+    isCompleted: false,
+  );
+
+  static Challenge challenge2 = Challenge(
+    name: "Serial Reader",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge3 = Challenge(
+    name: "Page turner",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge4 = Challenge(
+    name: "Voyager",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge5 = Challenge(
+    name: "Speedy Reader",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge6 = Challenge(
+    name: "Non-Fiction Aficionado",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge7 = Challenge(
+    name: "Vintage virtuoso",
+    info: "",
+    isCompleted: false,
+  );
+
+  static Challenge challenge8 = Challenge(
+    name: "Fanboy",
+    info: "",
+    isCompleted: false,
+  );
+
   static Book book1 = Book(
     name: "Deep Work",
     cover: 'assets/images/deepwork.jpg',
@@ -366,5 +416,16 @@ class SampleData {
   static List<Book> myWishlist = [
     book13,
     book8,
+  ];
+
+  static List<Challenge> allChallenges = [
+    challenge1,
+    challenge2,
+    challenge3,
+    challenge4,
+    challenge5,
+    challenge6,
+    challenge7,
+    challenge8,
   ];
 }
