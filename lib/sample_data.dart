@@ -10,6 +10,7 @@ class SampleData {
     description: "Deep work it what yohnot ay.",
     isStarred: false,
     pages: 296,
+    pagesRead: 100,
     genre: "Self Help",
     quotes: [
       Quote(
@@ -35,6 +36,7 @@ class SampleData {
     description: "lorem",
     isStarred: false,
     pages: 296,
+    pagesRead: 296,
     genre: "Self Help",
     quotes: [
       Quote(
@@ -79,6 +81,7 @@ class SampleData {
     cover: 'assets/images/quiet.jpg',
     description: "lorem",
     pages: 296,
+    pagesRead: 296,
     genre: "Psychology",
     isStarred: false,
     quotes: [
@@ -241,6 +244,7 @@ class SampleData {
     description:
         "\"Your world view will transform \" - Salim Ismail, Best Selling Author of 'Exponential Organizations' We live in an extraordinary time. Technological advances are happening at a rate faster than our ability to understand them, and in a world that moves faster than we can imagine, we cannot afford to stand still. These advances bring efficiency and abundance—and they are profoundly deflationary. Our economic systems were built for a pre-technology era when labour and capital were inextricably linked, an era that counted on growth and inflation, an era where we made money from inefficiency. That era is over, but we keep on pretending that those economic systems still work. The only thing driving growth in the world today is easy credit, which is being created at a pace that is hard to comprehend—and with it, debt that we will never be able to pay back. As we try to artificially drive an economic system built for the past, we are creating more than just economic trouble. On our current path, our world will become profoundly more polarized and unsafe. We need to build a new framework for our local and global economies, and soon; we need to accept deflation and embrace the abundance it can bring. Otherwise, the same technology that has the power to bring abundance to us and our world will instead destroy it. In this extraordinary contrarian book, Jeff Booth, a leading mind and CEO in e-commerce and technology for 20 years, details the technological and economic realities shaping our present and our future, and the choices we face as we go forward—a potentially alarming, but deeply hopeful situation.",
     pages: 232,
+    pagesRead: 100,
     isStarred: false,
     genre: "Economics",
     quotes: [
@@ -268,6 +272,7 @@ class SampleData {
     description:
         "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be \"positive\" all the time so that we can truly become better, happier people.",
     pages: 212,
+    pagesRead: 100,
     isStarred: false,
     genre: "Nonfiction",
     quotes: [
