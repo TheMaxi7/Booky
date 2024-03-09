@@ -1,4 +1,4 @@
-import 'package:booky/book_info.dart';
+
 import 'package:booky/challenges_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -105,7 +105,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                 itemCount: manager.allChallenges.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  childAspectRatio: 1.0, // Aspect ratio for each grid item
+                  childAspectRatio: 1.0,
                   mainAxisSpacing: 8.0,
                   crossAxisSpacing: 8.0,
                 ),

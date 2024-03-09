@@ -6,6 +6,10 @@ class Book {
   String name = "";
   String cover = "";
   String author="";
+  double myRating;
+  double allRating;
+  String publishDate="";
+  int isbn;
   String description = "";
   String genre = "";
   bool isStarred = false;
@@ -18,7 +22,11 @@ class Book {
   Book({
     this.name = "",
     this.author="",
+    this.isbn=0,
     this.cover = "",
+    this.publishDate="",
+    this.myRating = 0.0,
+    this.allRating =0.0,
     this.isStarred = false,
     this.description = "",
     this.pages = 0,

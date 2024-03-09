@@ -1,3 +1,4 @@
+import 'package:booky/dashboard_statistics.dart';
 import 'package:booky/data_manager.dart';
 import 'package:booky/my_library_shelves.dart';
 import 'package:booky/my_library_wishlist.dart';
@@ -109,15 +110,15 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
             ],
           ),
 
-          Explore(),
+          const Explore(),
           TabBarView(
             controller: _dashboardTabController,
-            children: [
+            children: const [
               DashboardChallengesTab(),
-              Container(color: Colors.blue),
+              DashboardStatisticsTab(),
             ],
           ),
-          Notes(),
+          const Notes(),
         ],
       ),
       bottomNavigationBar: Container(
