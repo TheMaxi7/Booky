@@ -17,36 +17,39 @@ class DataManager extends ChangeNotifier {
   List<Book> get forYouBooks => List.unmodifiable(_forYouBooks);
   List<Book> get newReleasesBooks => List.unmodifiable(_newReleasesBooks);
   List<Book> get myBooks => List.unmodifiable(_myBooks);
-  List<Book> get myWishlist => List.unmodifiable(_myWishlist);
+  List<Book> get myWishlist => List.from(_myWishlist);
 
 
-  //void _deleteFavouriteRecipe(int index){
-  //  _favouriteRecipes.removeAt(index);
-  //  notifyListeners();
-  //}
+  void _removeBookFromWishlist(Book item) {
 
-  //void _addFavouriteRecipe(Recipe item){
-  //  _favouriteRecipes.add(item);
-  //  notifyListeners();
-  //}
+    _myWishlist.remove(item);
+    notifyListeners();
+  }
 
-  //void updateFavouriteList(Recipe item, bool newValue){
-  //  if (newValue) {
-  //    _addFavouriteRecipe(item);
-  //  } else {
-  //    final int _favouriteRecipesIndex = _favouriteRecipes.indexWhere((element) => element.name==item.name);
-  //    _deleteFavouriteRecipe(_favouriteRecipesIndex);
-  //  }
-  //}
+  void _addBookToWishlist(Book item) {
 
-  //void updateFavouriteValue(Recipe item, bool newValue){
-  //  final int _allRecipesIndex = _allRecipes.indexWhere((element) => element.name==item.name);
+    _myWishlist.add(item);
+    notifyListeners();
+  }
 
-  //  if (_allRecipesIndex!=-1){
-  //    _allRecipes[_allRecipesIndex].isFavourite = newValue;
-  //  }
-  //  notifyListeners();
-  //}
+  void updateFavouriteList(Book item, bool newValue) {
+    if (newValue) {
+      _addBookToWishlist(item);
+    } else {
+      _removeBookFromWishlist(item);
+    }
+    notifyListeners();
+  }
+
+  void updateFavouriteValue(Book item, bool newValue) {
+    final int _allBooksIndex = allBooks.indexWhere((element) => element.name == item.name);
+
+    if (_allBooksIndex != -1) {
+      allBooks[_allBooksIndex].isStarred = newValue;
+      notifyListeners();
+    }
+  }
+
 
   //static Future<List<Recipe>> getAllRecipes() async {
     // Simulate api request wait time

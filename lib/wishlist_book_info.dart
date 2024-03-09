@@ -1,6 +1,8 @@
 import 'package:booky/book.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:booky/data_manager.dart';
+import 'package:provider/provider.dart';
 
 class WishlistBookInfo extends StatefulWidget {
   const WishlistBookInfo({super.key, required this.book});
@@ -12,6 +14,13 @@ class WishlistBookInfo extends StatefulWidget {
 }
 
 class _WishlistBookInfoState extends State<WishlistBookInfo> {
+  bool _isStarred = false;
+  @override
+  void initState() {
+    super.initState();
+    _isStarred = widget.book.isStarred;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +44,18 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.star,
-                color: Color(0xFF58595B),
+                color: _isStarred ?  const Color(0xFFFF4713) : const Color(0xFF58595B),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _isStarred = !_isStarred;
+                  final dataManager = Provider.of<DataManager>(context, listen: false);
+                  dataManager.updateFavouriteValue(widget.book, _isStarred);
+                  dataManager.updateFavouriteList(widget.book, _isStarred);
+                });
+              },
             ),
           ],
         ),

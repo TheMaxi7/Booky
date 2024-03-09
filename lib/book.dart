@@ -8,6 +8,7 @@ class Book {
   String author="";
   String description = "";
   String genre = "";
+  bool isStarred = false;
   int pages = 0;
   List<Quote> quotes = [];
   List<Note> notes = [];
@@ -17,6 +18,7 @@ class Book {
     this.name = "",
     this.author="",
     this.cover = "",
+    this.isStarred = false,
     this.description = "",
     this.pages = 0,
     this.genre="",
