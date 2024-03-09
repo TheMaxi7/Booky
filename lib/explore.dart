@@ -4,7 +4,7 @@ import 'package:booky/explore_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data_manager.dart';
-import 'book_info.dart';
+
 
 class Explore extends StatefulWidget {
   const Explore({

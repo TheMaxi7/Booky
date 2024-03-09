@@ -1,5 +1,4 @@
 import 'package:booky/book.dart';
-import 'package:booky/book_info.dart';
 import 'package:booky/notes_column.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

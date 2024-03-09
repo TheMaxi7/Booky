@@ -47,10 +47,10 @@ class DataManager extends ChangeNotifier {
   }
 
   void updateFavouriteValue(Book item, bool newValue) {
-    final int _allBooksIndex = allBooks.indexWhere((element) => element.name == item.name);
+    final int allBooksIndex = allBooks.indexWhere((element) => element.name == item.name);
 
-    if (_allBooksIndex != -1) {
-      allBooks[_allBooksIndex].isStarred = newValue;
+    if (allBooksIndex != -1) {
+      allBooks[allBooksIndex].isStarred = newValue;
       notifyListeners();
     }
   }

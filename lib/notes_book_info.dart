@@ -14,7 +14,6 @@ class NotesBookInfo extends StatefulWidget {
 
 class _NotesBookInfoState extends State<NotesBookInfo>
     with TickerProviderStateMixin {
-  @override
   late TabController _notesTabController;
 
   @override
