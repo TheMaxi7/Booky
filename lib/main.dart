@@ -3,6 +3,7 @@ import 'package:booky/data_manager.dart';
 import 'package:booky/my_library_shelves.dart';
 import 'package:booky/my_library_wishlist.dart';
 import 'package:booky/notes.dart';
+import 'package:booky/search_book_in_library_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'my_library_books.dart';
@@ -76,146 +77,156 @@ class _BookyAppHomeState extends State<BookyAppHome>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFDCE2EB),
-      appBar: _buildAppBar(_selectedIconIndex),
-      extendBody: true,
-      drawer: Drawer(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
         backgroundColor: const Color(0xFFDCE2EB),
-        surfaceTintColor: const Color(0xFFDCE2EB),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.person, size: 60,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "John Doe",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const SizedBox(height: 4),
+        appBar: _buildAppBar(_selectedIconIndex),
+        extendBody: true,
+        drawer: Drawer(
+          backgroundColor: const Color(0xFFDCE2EB),
+          surfaceTintColor: const Color(0xFFDCE2EB),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.person, size: 60,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "John Doe",
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const SizedBox(height: 4),
 
-                          GestureDetector(
-                            onTap: () {
+                            GestureDetector(
+                              onTap: () {
 
-                            },
-                            child: Text(
-                              "View Profile",
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              },
+                              child: Text(
+                                "View Profile",
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
-                        ],
-                      ),
-                    ],
-                  )),
-              const Divider( color: Color(0xFF141D29),),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text("Settings"),
-                onTap: () {
+                          ],
+                        ),
+                      ],
+                    )),
+                const Divider( color: Color(0xFF141D29),),
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  title: const Text("Settings"),
+                  onTap: () {
 
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.import_export),
-                title: const Text("Import/Export"),
-                onTap: () {
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.import_export),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  title: const Text("Import/Export"),
+                  onTap: () {
 
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.message),
-                title: const Text("Contact Us"),
-                onTap: () {
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.message),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  title: const Text("Contact Us"),
+                  onTap: () {
 
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.question_mark),
-                title: const Text("FAQs"),
-                onTap: () {
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.question_mark),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  title: const Text("FAQs"),
+                  onTap: () {
 
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      body: IndexedStack(
-        index: _selectedIconIndex,
-        children: [
-          TabBarView(
-            controller: _myLibraryTabController,
-            children: const [
-              MyLibraryBooks(),
-              MyLibraryShelves(),
-              MyLibraryWishlist(),
-            ],
-          ),
-          const Explore(),
-          TabBarView(
-            controller: _dashboardTabController,
-            children: const [
-              DashboardChallengesTab(),
-              DashboardStatisticsTab(),
-            ],
-          ),
-          const Notes(),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10),
-            topLeft: Radius.circular(10),
-          ),
-          boxShadow: [
-            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+        body: IndexedStack(
+          index: _selectedIconIndex,
+          children: [
+            TabBarView(
+              controller: _myLibraryTabController,
+              children: const [
+                MyLibraryBooks(),
+                MyLibraryShelves(),
+                MyLibraryWishlist(),
+              ],
+            ),
+            const Explore(),
+            TabBarView(
+              controller: _dashboardTabController,
+              children: const [
+                DashboardChallengesTab(),
+                DashboardStatisticsTab(),
+              ],
+            ),
+            const Notes(),
           ],
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10.0),
-            topRight: Radius.circular(10.0),
-          ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _selectedIconIndex,
-            onTap: (index) {
-              setState(() {
-                _selectedIconIndex = index;
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.local_library_outlined),
-                label: "My Library",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.explore),
-                label: "Explore",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.bar_chart),
-                label: "Dashboard",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit_note_sharp),
-                label: "Notes",
-              ),
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              topLeft: Radius.circular(10),
+            ),
+            boxShadow: [
+              BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
             ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: _selectedIconIndex,
+              onTap: (index) {
+                setState(() {
+                  _selectedIconIndex = index;
+                });
+              },
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.local_library_outlined),
+                  label: "My Library",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.explore),
+                  label: "Explore",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.bar_chart),
+                  label: "Dashboard",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.edit_note_sharp),
+                  label: "Notes",
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+
 
   PreferredSizeWidget _buildAppBar(int selectedIconIndex) {
     PreferredSizeWidget buildMyLibraryAppBar() {
@@ -232,15 +243,39 @@ class _BookyAppHomeState extends State<BookyAppHome>
               Icons.search,
               color: Color(0xFF58595B),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchBookInLibrary()),
+              );
+            },
           ),
           if (_currentMyLibIndex == 0)
-            IconButton(
-              icon: const Icon(
-                Icons.add,
-                color: Color(0xFF58595B),
-              ),
-              onPressed: () {},
+            PopupMenuButton(
+              icon: const Icon(Icons.add,color: Color(0xFF58595B),),
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 'add_book',
+                  child: Text('Add Book'),
+                ),
+                const PopupMenuItem(
+                  value: 'add_shelf',
+                  child: Text('Add Shelf'),
+                ),
+                const PopupMenuItem(
+                  value: 'add_wishlist',
+                  child: Text('Add to Wishlist'),
+                ),
+              ],
+              onSelected: (value) {
+                if (value == 'add_book') {
+                  // Handle adding a book
+                } else if (value == 'add_shelf') {
+                  // Handle adding a shelf
+                } else if (value == 'add_wishlist') {
+                  // Handle adding to wishlist
+                }
+              },
             ),
         ],
         bottom: TabBar(
@@ -277,19 +312,14 @@ class _BookyAppHomeState extends State<BookyAppHome>
             onPressed: () {},
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight + 10),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            color: Theme.of(context).primaryColor,
-            child: const TextField(
-              style: TextStyle(color: Colors.white),
-              cursorColor: Colors.white,
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                hintStyle: TextStyle(color: Colors.white54),
-                border: InputBorder.none,
-              ),
+        bottom:  PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SearchBar(
+              leading: const Icon(Icons.search),
+              constraints: BoxConstraints(minHeight: 30, maxWidth: (MediaQuery.of(context).size.width)/1.2),
+              hintText: "Search by keyword or ISBN",
             ),
           ),
         ),
@@ -301,6 +331,8 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
       );
     }
+
+
 
     PreferredSizeWidget buildDashboardAppBar() {
       return AppBar(

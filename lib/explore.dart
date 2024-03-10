@@ -1,10 +1,8 @@
-
 import 'package:booky/explore_book_card.dart';
 import 'package:booky/explore_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data_manager.dart';
-
 
 class Explore extends StatefulWidget {
   const Explore({
@@ -16,13 +14,6 @@ class Explore extends StatefulWidget {
 }
 
 class _ExploreState extends State<Explore> {
-
-  // double computeHeight() {
-  //   double height = MediaQuery.of(context).size.height;
-  //   var padding = MediaQuery.of(context).viewPadding;
-  //   double safeHeight = height - padding.top - kToolbarHeight;
-  //   return safeHeight;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +27,40 @@ class _ExploreState extends State<Explore> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: DropdownButton(
-                      icon: const Icon(Icons.arrow_drop_down),
-                      hint: const Text("All categories"),
-                      items: const [
-                        DropdownMenuItem(
-                            value: "ciao",
-                            child: Text("ciao")
+                    child: Material(
+                      elevation: 2, // Set the desired elevation here
+                      borderRadius: BorderRadius.circular(40),
+                      surfaceTintColor: const Color(0xFFDCE2EB),
+                      color: const Color(0xFFDCE2EB),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF58595B)),
+                          borderRadius: BorderRadius.circular(40),
                         ),
-                        DropdownMenuItem(
-                            value: "ciao",
-                            child: Text("ciao")
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            dropdownColor: const Color(0xFFDCE2EB),
+                            icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF58595B)),
+                            hint: const Text("All categories", style: TextStyle(color: Color(0xFF58595B))),
+                            items: const [
+                              DropdownMenuItem(
+                                value: "Fantasy",
+                                child: Text("Fantasy", style: TextStyle(color: Color(0xFF58595B))),
+                              ),
+                              DropdownMenuItem(
+                                value: "Self Help",
+                                child: Text("Self Help", style: TextStyle(color: Color(0xFF58595B))),
+                              ),
+                              // Add more DropdownMenuItems as needed
+                            ],
+                            onChanged: (value) {
+                              // Handle dropdown item selection
+                            },
+                          ),
                         ),
-                      ],
-                      onChanged: (value) {  },
-                    ),
+                      ),
+                    )
                   ),
                   Text("Bestsellers",
                       style: Theme.of(context).textTheme.headlineSmall),
@@ -74,7 +84,8 @@ class _ExploreState extends State<Explore> {
                               ),
                             );
                           },
-                          child: ExploreBookCard(book: manager.bestsellersBooks[index]),
+                          child: ExploreBookCard(
+                              book: manager.bestsellersBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {
@@ -114,8 +125,8 @@ class _ExploreState extends State<Explore> {
                               ),
                             );
                           },
-                          child:
-                          ExploreBookCard(book: manager.newReleasesBooks[index]),
+                          child: ExploreBookCard(
+                              book: manager.newReleasesBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {
@@ -155,7 +166,8 @@ class _ExploreState extends State<Explore> {
                               ),
                             );
                           },
-                          child: ExploreBookCard(book: manager.forYouBooks[index]),
+                          child:
+                              ExploreBookCard(book: manager.forYouBooks[index]),
                         );
                       },
                       separatorBuilder: (context, index) {

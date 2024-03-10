@@ -73,7 +73,8 @@ class _MyBookCardState extends State<MyBookCard> {
                           ),
                           IconButton(
                             icon: const Icon(Icons.share),
-                            onPressed: () {},
+                            onPressed: () {
+                            },
                           ),
                         ],
                       ),
@@ -95,9 +96,10 @@ class _MyBookCardState extends State<MyBookCard> {
                                   padding: const EdgeInsets.only(
                                       top: 8, bottom: 8, right: 8),
                                   child: SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: CircularProgressIndicator(
+                                    width: (MediaQuery.of(context).size.width) / 2.5,
+                                    height: 3,
+                                    child: LinearProgressIndicator(
+                                      borderRadius: BorderRadius.circular(10),
                                       value: (widget.book.pagesRead /
                                           widget.book.pages),
                                       backgroundColor: const Color(0xFF141D29),
@@ -132,12 +134,15 @@ class _MyBookCardState extends State<MyBookCard> {
                           ),
                         ],
                       ),
-                      ExpandableText(
-                        '"${findFavourite(widget.book)}"',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        expandText: 'show more',
-                        collapseText: 'show less',
-                        maxLines: 2,
+                      Container(
+                        width: (MediaQuery.of(context).size.width) / 2, // Set the width to the desired value
+                        child: ExpandableText(
+                          '"${findFavourite(widget.book)}"',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          expandText: 'show more',
+                          collapseText: 'show less',
+                          maxLines: 2,
+                        ),
                       ),
                     ]),
               )
