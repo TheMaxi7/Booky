@@ -9,14 +9,17 @@ import 'my_library_books.dart';
 import 'package:booky/app_theme.dart';
 import 'explore.dart';
 import 'dashboard_challenges.dart';
+
 void main() {
   runApp(BookyApp());
 }
 
-class BookyApp extends StatelessWidget{
+class BookyApp extends StatelessWidget {
   BookyApp({super.key});
+
   final ThemeData appTheme = BookyTheme.normal();
   final DataManager _dataManager = DataManager();
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<DataManager>(
@@ -31,25 +34,22 @@ class BookyApp extends StatelessWidget{
   }
 }
 
-
-
-class BookyAppHome extends StatefulWidget{
-
+class BookyAppHome extends StatefulWidget {
   const BookyAppHome({super.key, required this.title});
 
   final String title;
+
   @override
   State<BookyAppHome> createState() => _BookyAppHomeState();
-
 }
 
-class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMixin{
+class _BookyAppHomeState extends State<BookyAppHome>
+    with TickerProviderStateMixin {
   int _selectedIconIndex = 0;
   int _currentMyLibIndex = 0;
 
   late TabController _myLibraryTabController;
   late TabController _dashboardTabController;
-
 
   @override
   void initState() {
@@ -66,7 +66,6 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
     });
   }
 
-
   @override
   void dispose() {
     _myLibraryTabController.dispose();
@@ -82,20 +81,71 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
       appBar: _buildAppBar(_selectedIconIndex),
       extendBody: true,
       drawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.zero,
-              child: Container(
-                height: 15,
-                color: Colors.blue,
+        backgroundColor: const Color(0xFFDCE2EB),
+        surfaceTintColor: const Color(0xFFDCE2EB),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.person, size: 60,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "John Doe",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+
+                          GestureDetector(
+                            onTap: () {
+
+                            },
+                            child: Text(
+                              "View Profile",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  )),
+              const Divider( color: Color(0xFF141D29),),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Settings"),
+                onTap: () {
+
+                },
               ),
-            ),
-            const Text("Child1"),
-            const Divider(),
-            const Text("Child2"),
-          ],
+              ListTile(
+                leading: const Icon(Icons.import_export),
+                title: const Text("Import/Export"),
+                onTap: () {
+
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.message),
+                title: const Text("Contact Us"),
+                onTap: () {
+
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.question_mark),
+                title: const Text("FAQs"),
+                onTap: () {
+
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: IndexedStack(
@@ -109,7 +159,6 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
               MyLibraryWishlist(),
             ],
           ),
-
           const Explore(),
           TabBarView(
             controller: _dashboardTabController,
@@ -166,10 +215,7 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
         ),
       ),
     );
-
-
   }
-
 
   PreferredSizeWidget _buildAppBar(int selectedIconIndex) {
     PreferredSizeWidget buildMyLibraryAppBar() {
@@ -272,11 +318,10 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
           ],
         ),
         leading: Builder(
-          builder: (context) =>
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
       );
     }
@@ -299,11 +344,10 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
           ),
         ],
         leading: Builder(
-          builder: (context) =>
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
       );
     }
@@ -320,11 +364,10 @@ class _BookyAppHomeState extends State<BookyAppHome> with TickerProviderStateMix
           ],
         ),
         leading: Builder(
-          builder: (context) =>
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
       );
     }
