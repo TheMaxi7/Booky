@@ -246,11 +246,11 @@ class _BookyAppHomeState extends State<BookyAppHome>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchBookInLibrary()),
+                MaterialPageRoute(builder: (context) => const SearchBookInLibrary()),
               );
             },
           ),
-          if (_currentMyLibIndex == 0)
+          if (_currentMyLibIndex != 2)
             PopupMenuButton(
               icon: const Icon(Icons.add,color: Color(0xFF58595B),),
               itemBuilder: (context) => [

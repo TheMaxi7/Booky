@@ -26,7 +26,6 @@ class _SearchBookInLibraryState extends State<SearchBookInLibrary> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Dismiss keyboard when tapped outside of text fields
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
