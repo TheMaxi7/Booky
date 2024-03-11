@@ -1,11 +1,16 @@
 import 'package:booky/add_book_manually.dart';
 import 'package:booky/add_new_shelf.dart';
+import 'package:booky/contact_us.dart';
 import 'package:booky/dashboard_statistics.dart';
 import 'package:booky/data_manager.dart';
+import 'package:booky/faqs.dart';
+import 'package:booky/import_export.dart';
 import 'package:booky/my_library_shelves.dart';
 import 'package:booky/my_library_wishlist.dart';
 import 'package:booky/notes.dart';
 import 'package:booky/search_book_in_library_screen.dart';
+import 'package:booky/settings.dart';
+import 'package:booky/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'my_library_books.dart';
@@ -13,7 +18,6 @@ import 'package:booky/app_theme.dart';
 import 'explore.dart';
 import 'dashboard_challenges.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
-
 
 void main() {
   runApp(BookyApp());
@@ -101,7 +105,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        const Icon(Icons.person, size: 60,),
+                        const Icon(
+                          Icons.person,
+                          size: 60,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -110,11 +117,11 @@ class _BookyAppHomeState extends State<BookyAppHome>
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const SizedBox(height: 4),
-
                             GestureDetector(
-                              onTap: () {
-
-                              },
+                              onTap: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const UserProfile()));},
                               child: Text(
                                 "View Profile",
                                 style: Theme.of(context).textTheme.bodyMedium,
@@ -124,13 +131,18 @@ class _BookyAppHomeState extends State<BookyAppHome>
                         ),
                       ],
                     )),
-                const Divider( color: Color(0xFF141D29),),
+                const Divider(
+                  color: Color(0xFF141D29),
+                ),
                 ListTile(
                   leading: const Icon(Icons.settings),
                   trailing: const Icon(Icons.arrow_forward_ios_sharp),
                   title: const Text("Settings"),
                   onTap: () {
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Settings()));
                   },
                 ),
                 ListTile(
@@ -138,7 +150,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   trailing: const Icon(Icons.arrow_forward_ios_sharp),
                   title: const Text("Import/Export"),
                   onTap: () {
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ImportExport()));
                   },
                 ),
                 ListTile(
@@ -146,7 +161,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   trailing: const Icon(Icons.arrow_forward_ios_sharp),
                   title: const Text("Contact Us"),
                   onTap: () {
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ContactUs()));
                   },
                 ),
                 ListTile(
@@ -154,7 +172,8 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   trailing: const Icon(Icons.arrow_forward_ios_sharp),
                   title: const Text("FAQs"),
                   onTap: () {
-
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const Faqs()));
                   },
                 ),
               ],
@@ -231,7 +250,6 @@ class _BookyAppHomeState extends State<BookyAppHome>
     );
   }
 
-
   PreferredSizeWidget _buildAppBar(int selectedIconIndex) {
     PreferredSizeWidget buildMyLibraryAppBar() {
       return AppBar(
@@ -250,13 +268,17 @@ class _BookyAppHomeState extends State<BookyAppHome>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SearchBookInLibrary()),
+                MaterialPageRoute(
+                    builder: (context) => const SearchBookInLibrary()),
               );
             },
           ),
           if (_currentMyLibIndex == 0)
             PopupMenuButton(
-              icon: const Icon(Icons.add,color: Color(0xFF58595B),),
+              icon: const Icon(
+                Icons.add,
+                color: Color(0xFF58595B),
+              ),
               itemBuilder: (context) => [
                 const PopupMenuItem(
                   value: 'add_book_with_isbn',
@@ -285,16 +307,23 @@ class _BookyAppHomeState extends State<BookyAppHome>
                 } else if (value == 'add_book_manually') {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const AddBookManually()));
+                      MaterialPageRoute(
+                          builder: (context) => const AddBookManually()));
                 }
               },
             ),
           if (_currentMyLibIndex == 1)
             IconButton(
-              icon: const Icon(Icons.add,color: Color(0xFF58595B),),
-              onPressed: () { Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddNewShelf())); },
+              icon: const Icon(
+                Icons.add,
+                color: Color(0xFF58595B),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddNewShelf()));
+              },
             ),
         ],
         bottom: TabBar(
@@ -337,13 +366,15 @@ class _BookyAppHomeState extends State<BookyAppHome>
             },
           ),
         ],
-        bottom:  PreferredSize(
+        bottom: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: SearchBar(
               leading: const Icon(Icons.search),
-              constraints: BoxConstraints(minHeight: 30, maxWidth: (MediaQuery.of(context).size.width)/1.2),
+              constraints: BoxConstraints(
+                  minHeight: 30,
+                  maxWidth: (MediaQuery.of(context).size.width) / 1.2),
               hintText: "Search by keyword or ISBN",
             ),
           ),
@@ -356,8 +387,6 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
       );
     }
-
-
 
     PreferredSizeWidget buildDashboardAppBar() {
       return AppBar(

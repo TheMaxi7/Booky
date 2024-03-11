@@ -21,7 +21,11 @@ class _MyBookCardState extends State<MyBookCard> {
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+
               GestureDetector(
+                onLongPressStart: (value) {
+                  _showDeleteButton(context, value.globalPosition);
+                },
                 onTap: () {
                   Navigator.push(
                     context,
@@ -134,8 +138,8 @@ class _MyBookCardState extends State<MyBookCard> {
                           ),
                         ],
                       ),
-                      Container(
-                        width: (MediaQuery.of(context).size.width) / 2, // Set the width to the desired value
+                      SizedBox(
+                        width: (MediaQuery.of(context).size.width) / 2,
                         child: ExpandableText(
                           '"${findFavourite(widget.book)}"',
                           style: Theme.of(context).textTheme.bodyMedium,
@@ -149,5 +153,29 @@ class _MyBookCardState extends State<MyBookCard> {
             ]
         )
     );
+  }
+
+  void _showDeleteButton(BuildContext context, Offset offset) {
+    final RenderObject overlay =
+    Overlay.of(context).context.findRenderObject()!;
+
+    showMenu(
+        context: context,
+        items: [
+          PopupMenuItem(
+            child: const Row(children: [
+              Icon(Icons.delete),
+              SizedBox(width: 16),
+              Text('Delete')
+            ]),
+            onTap: () {
+              //delete book logic
+            },
+          ),
+        ],
+        position: RelativeRect.fromRect(
+            Rect.fromLTWH(offset.dx, offset.dy, 30, 30),
+            Rect.fromLTWH(0, 0, overlay.paintBounds.size.width,
+                overlay.paintBounds.size.height)));
   }
 }
