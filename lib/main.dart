@@ -1,3 +1,5 @@
+import 'package:booky/add_book_manually.dart';
+import 'package:booky/add_new_shelf.dart';
 import 'package:booky/dashboard_statistics.dart';
 import 'package:booky/data_manager.dart';
 import 'package:booky/my_library_shelves.dart';
@@ -10,6 +12,8 @@ import 'my_library_books.dart';
 import 'package:booky/app_theme.dart';
 import 'explore.dart';
 import 'dashboard_challenges.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+
 
 void main() {
   runApp(BookyApp());
@@ -250,32 +254,47 @@ class _BookyAppHomeState extends State<BookyAppHome>
               );
             },
           ),
-          if (_currentMyLibIndex != 2)
+          if (_currentMyLibIndex == 0)
             PopupMenuButton(
               icon: const Icon(Icons.add,color: Color(0xFF58595B),),
               itemBuilder: (context) => [
                 const PopupMenuItem(
-                  value: 'add_book',
-                  child: Text('Add Book'),
+                  value: 'add_book_with_isbn',
+                  child: Text('Add Book with ISBN'),
                 ),
                 const PopupMenuItem(
-                  value: 'add_shelf',
-                  child: Text('Add Shelf'),
+                  value: 'add_by_keyword',
+                  child: Text('Add by keyword'),
                 ),
                 const PopupMenuItem(
-                  value: 'add_wishlist',
-                  child: Text('Add to Wishlist'),
+                  value: 'add_book_manually',
+                  child: Text('Add manually'),
                 ),
               ],
-              onSelected: (value) {
-                if (value == 'add_book') {
-                  // Handle adding a book
-                } else if (value == 'add_shelf') {
-                  // Handle adding a shelf
-                } else if (value == 'add_wishlist') {
-                  // Handle adding to wishlist
+              onSelected: (value) async {
+                if (value == 'add_book_with_isbn') {
+                  await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SimpleBarcodeScannerPage(),
+                      ));
+                } else if (value == 'add_by_keyword') {
+                  setState(() {
+                    _selectedIconIndex = 1;
+                  });
+                } else if (value == 'add_book_manually') {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AddBookManually()));
                 }
               },
+            ),
+          if (_currentMyLibIndex == 1)
+            IconButton(
+              icon: const Icon(Icons.add,color: Color(0xFF58595B),),
+              onPressed: () { Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddNewShelf())); },
             ),
         ],
         bottom: TabBar(
@@ -309,7 +328,13 @@ class _BookyAppHomeState extends State<BookyAppHome>
               Icons.document_scanner_sharp,
               color: Color(0xFF58595B),
             ),
-            onPressed: () {},
+            onPressed: () async {
+              await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SimpleBarcodeScannerPage(),
+                  ));
+            },
           ),
         ],
         bottom:  PreferredSize(
