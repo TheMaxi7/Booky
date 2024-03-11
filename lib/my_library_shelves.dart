@@ -11,7 +11,7 @@ class MyLibraryShelves extends StatefulWidget {
 }
 
 class _MyLibraryShelvesState extends State<MyLibraryShelves> {
-  final DataManager manager = DataManager(); // Assuming you have a DataManager instance
+  final DataManager manager = DataManager();
 
   @override
   Widget build(BuildContext context) {
@@ -36,4 +36,6 @@ class _MyLibraryShelvesState extends State<MyLibraryShelves> {
       },
     );
   }
+
+
 }

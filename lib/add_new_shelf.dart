@@ -1,4 +1,10 @@
+import 'package:booky/my_library_books.dart';
+import 'package:booky/my_library_shelves.dart';
+import 'package:booky/shelf.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'data_manager.dart';
+
 
 class AddNewShelf extends StatefulWidget {
   const AddNewShelf({Key? key}) : super(key: key);
@@ -73,7 +79,18 @@ class _AddNewShelfState extends State<AddNewShelf> {
             SizedBox(
               width: ((MediaQuery.of(context).size.width) / 1.5),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                    setState(() {
+                      final dataManager =
+                      Provider.of<DataManager>(context, listen: false);
+                      dataManager.updateShelfList(
+                          Shelf(name: titleController.text), false);
+
+                    });
+
+                    Navigator.pop(context);
+
+                },
                 style: ElevatedButton.styleFrom(
                     shadowColor: Colors.black,
                     side: const BorderSide(color: Color(0xFF58595B)),

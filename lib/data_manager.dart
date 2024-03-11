@@ -27,6 +27,37 @@ class DataManager extends ChangeNotifier {
   List<Challenge> get allChallenges => List.from(_challenges);
   List<Shelf> get myShelves => List.from(_myShelves);
 
+
+  void addBookToShelf(Book item, Shelf shelf) {
+    shelf.books.add(item);
+    notifyListeners();
+  }
+
+  void removeBookFromShelf(Book item, Shelf shelf) {
+    shelf.books.remove(item);
+    notifyListeners();
+  }
+
+  void addNewShelf(Shelf shelf) {
+    _myShelves.add(shelf);
+    notifyListeners();
+  }
+
+  void removeShelf(Shelf shelf) {
+    _myShelves.remove(shelf);
+    notifyListeners();
+  }
+
+  void updateShelfList(Shelf shelf, bool action) {
+    if (action == false) {
+      addNewShelf(shelf);
+    } else {
+      removeShelf(shelf);
+    }
+    notifyListeners();
+    }
+
+
   void _removeBookFromWishlist(Book item) {
 
     _myWishlist.remove(item);
