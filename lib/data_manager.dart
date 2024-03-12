@@ -33,6 +33,9 @@ class DataManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  void Update(){
+    notifyListeners();
+  }
   void removeBookFromShelf(Book item, Shelf shelf) {
     shelf.books.remove(item);
     notifyListeners();

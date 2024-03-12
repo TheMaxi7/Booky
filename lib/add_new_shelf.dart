@@ -1,10 +1,10 @@
 import 'package:booky/my_library_books.dart';
 import 'package:booky/my_library_shelves.dart';
 import 'package:booky/shelf.dart';
+import 'package:booky/shelf_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data_manager.dart';
-
 
 class AddNewShelf extends StatefulWidget {
   const AddNewShelf({Key? key}) : super(key: key);
@@ -14,13 +14,11 @@ class AddNewShelf extends StatefulWidget {
 }
 
 class _AddNewShelfState extends State<AddNewShelf> {
-
   TextEditingController titleController = TextEditingController();
 
   void resetFields() {
     setState(() {
       titleController.clear();
-
     });
   }
 
@@ -50,7 +48,6 @@ class _AddNewShelfState extends State<AddNewShelf> {
               child: ListView(
                 padding: const EdgeInsets.all(8.0),
                 children: [
-
                   TextField(
                     controller: titleController,
                     decoration: InputDecoration(
@@ -80,15 +77,14 @@ class _AddNewShelfState extends State<AddNewShelf> {
               width: ((MediaQuery.of(context).size.width) / 1.5),
               child: ElevatedButton(
                 onPressed: () {
-                    setState(() {
-                      final dataManager =
-                      Provider.of<DataManager>(context, listen: false);
-                      dataManager.updateShelfList(
-                          Shelf(name: titleController.text), false);
-
-                    });
-
-                    Navigator.pop(context);
+                  var newShelf = Shelf(name: titleController.text);
+                  setState(() {
+                     var dataManager =
+                        Provider.of<DataManager>(context, listen: false);
+                    dataManager.updateShelfList(
+                        newShelf, false);
+                  });
+                  Navigator.pop(context);
 
                 },
                 style: ElevatedButton.styleFrom(

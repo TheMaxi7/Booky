@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:booky/add_book_manually.dart';
 import 'package:booky/add_new_shelf.dart';
 import 'package:booky/contact_us.dart';
@@ -38,6 +40,7 @@ class BookyApp extends StatelessWidget {
         theme: appTheme,
         title: "",
         home: const BookyAppHome(title: "My Library"),
+
       ),
     );
   }
@@ -59,6 +62,7 @@ class _BookyAppHomeState extends State<BookyAppHome>
 
   late TabController _myLibraryTabController;
   late TabController _dashboardTabController;
+
 
   @override
   void initState() {
@@ -322,7 +326,7 @@ class _BookyAppHomeState extends State<BookyAppHome>
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AddNewShelf()));
+                        builder: (context) => const AddNewShelf())).then((value) => setState(){}));
               },
             ),
         ],
@@ -471,4 +475,5 @@ class _BookyAppHomeState extends State<BookyAppHome>
         return buildDefaultAppBar();
     }
   }
+
 }

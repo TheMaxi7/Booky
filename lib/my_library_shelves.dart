@@ -11,6 +11,7 @@ class MyLibraryShelves extends StatefulWidget {
 }
 
 class _MyLibraryShelvesState extends State<MyLibraryShelves> {
+
   final DataManager manager = DataManager();
 
   @override
@@ -18,12 +19,12 @@ class _MyLibraryShelvesState extends State<MyLibraryShelves> {
     return ListView.separated(
       itemCount: manager.myShelves.length,
       separatorBuilder: (BuildContext context, int index) {
-        return Divider(); // You can customize the separator here
+        return Divider();
       },
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            // Handle the tap event here, for example, navigate to another screen
+
             Navigator.push(
               context,
               MaterialPageRoute(
