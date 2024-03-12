@@ -1,4 +1,5 @@
 import 'package:booky/book.dart';
+import 'package:booky/data_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -12,6 +13,7 @@ class EditBook extends StatefulWidget {
 }
 
 class _EditBookState extends State<EditBook> {
+  final DataManager manager = DataManager();
   TextEditingController titleController = TextEditingController();
   TextEditingController authorController = TextEditingController();
   late double _value;
@@ -57,7 +59,6 @@ class _EditBookState extends State<EditBook> {
               child: ListView(
                 padding: const EdgeInsets.all(8.0),
                 children: [
-
                   TextField(
                     controller: titleController,
                     decoration: InputDecoration(
@@ -105,6 +106,26 @@ class _EditBookState extends State<EditBook> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, right: 8),
                     child: Text(
+                      "Shelf",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 8),
+                    child: DropdownMenu(
+                      hintText: 'Select shelf',
+                      dropdownMenuEntries: manager.myShelves.map((shelf) {
+                        return  DropdownMenuEntry(
+                          value: shelf.name,
+                          label: shelf.name,
+                        );
+                      }).toList(),
+
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 8),
+                    child: Text(
                       "Progress",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
@@ -137,7 +158,8 @@ class _EditBookState extends State<EditBook> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, right: 8, bottom: 4),
+                    padding:
+                        const EdgeInsets.only(top: 10, right: 8, bottom: 4),
                     child: Text(
                       "Rate",
                       style: Theme.of(context).textTheme.titleMedium,
@@ -155,9 +177,7 @@ class _EditBookState extends State<EditBook> {
                       Icons.star,
                       color: Color(0xFF141D29),
                     ),
-                    onRatingUpdate: (rating) {
-
-                    },
+                    onRatingUpdate: (rating) {},
                   ),
                 ],
               ),

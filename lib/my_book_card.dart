@@ -16,6 +16,7 @@ class MyBookCard extends StatefulWidget {
 }
 
 class _MyBookCardState extends State<MyBookCard> {
+  final DataManager manager = DataManager();
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -89,7 +90,7 @@ class _MyBookCardState extends State<MyBookCard> {
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
-                        'Shelf: ${widget.book.genre}',
+                        'Shelf: ${findShelf(widget.book)}',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Row(
@@ -185,4 +186,19 @@ class _MyBookCardState extends State<MyBookCard> {
             Rect.fromLTWH(0, 0, overlay.paintBounds.size.width,
                 overlay.paintBounds.size.height)));
   }
+
+  String findShelf (Book book) {
+    String shelfFound = "No shelf";
+    for (int i = 0; i < manager.myShelves.length; i++) {
+      for (int j = 0; j < manager.myShelves[i].books.length; j++) {
+        if (manager.myShelves[i].books[j] == book) {
+          shelfFound = manager.myShelves[i].name;
+          break;
+        }
+
+      }
+    }
+    return shelfFound;
+  }
+
 }

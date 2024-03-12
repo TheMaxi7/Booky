@@ -1,4 +1,5 @@
 import 'package:booky/book.dart';
+import 'package:booky/data_manager.dart';
 import 'package:booky/edit_book.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class BookInfo extends StatefulWidget {
 }
 
 class _BookInfoState extends State<BookInfo> {
+  final DataManager manager = DataManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +31,11 @@ class _BookInfoState extends State<BookInfo> {
               ),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditBook( book:widget.book,)),
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditBook(
+                            book: widget.book,
+                          )),
                 );
               },
             ),
@@ -187,6 +192,20 @@ class _BookInfoState extends State<BookInfo> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
+                    'Shelf',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 8, 4),
+                  child: Text(
+                    findShelf(widget.book),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
+                  child: Text(
                     'ISBN',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
@@ -220,5 +239,19 @@ class _BookInfoState extends State<BookInfo> {
         ],
       ),
     );
+  }
+
+  String findShelf (Book book) {
+    String shelfFound = "No shelf";
+    for (int i = 0; i < manager.myShelves.length; i++) {
+      for (int j = 0; j < manager.myShelves[i].books.length; j++) {
+        if (manager.myShelves[i].books[j] == book) {
+          shelfFound = manager.myShelves[i].name;
+          break;
+        }
+
+      }
+    }
+    return shelfFound;
   }
 }

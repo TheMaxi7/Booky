@@ -45,6 +45,13 @@ class DataManager extends ChangeNotifier {
 
   void removeBookFromMyBooks(Book item) {
     _myBooks.remove(item);
+    for (int i=0; i < myShelves.length; i++ ){
+      for (int j=0; j < myShelves[i].books.length; j++){
+        if (myShelves[i].books[j] == item){
+          myShelves[i].books.remove(item);
+        }
+      }
+    }
     notifyListeners();
   }
 

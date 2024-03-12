@@ -1,4 +1,3 @@
-
 import 'package:booky/notes_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
@@ -30,7 +29,8 @@ class _NotesBookCardState extends State<NotesBookCard> {
               );
             },
             child: Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8, bottom: 8, right: 0),
+              padding:
+                  const EdgeInsets.only(top: 8, left: 8, bottom: 8, right: 0),
               child: Container(
                 width: (MediaQuery.of(context).size.width) / 3,
                 height: (MediaQuery.of(context).size.width) / 3 * 1.51,
@@ -66,7 +66,10 @@ class _NotesBookCardState extends State<NotesBookCard> {
                       findFavourite(widget.book),
                       style: Theme.of(context).textTheme.headlineSmall,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: (((MediaQuery.of(context).size.width) / 5 * 1.51) / 2) ~/ 10,
+                      maxLines:
+                          (((MediaQuery.of(context).size.width) / 5 * 1.51) /
+                                  2) ~/
+                              10,
                     ),
                   ),
                 ),
@@ -78,8 +81,11 @@ class _NotesBookCardState extends State<NotesBookCard> {
                         side: const BorderSide(color: Color(0xFF58595B)),
                         backgroundColor: const Color(0xFF141d29),
                       ),
-
-                      child: Text('Add note', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color(0xFFDCE2EB))),
+                      child: Text('Add note',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: const Color(0xFFDCE2EB))),
                     ),
                     const SizedBox(width: 8),
                     const Text(
