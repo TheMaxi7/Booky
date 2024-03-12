@@ -1,8 +1,10 @@
 import 'package:booky/book_info.dart';
+import 'package:booky/data_manager.dart';
 import 'package:booky/notes_book_card.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
+import 'package:provider/provider.dart';
 
 class MyBookCard extends StatefulWidget {
   const MyBookCard({Key? key, required this.book}) : super(key: key);
@@ -24,7 +26,7 @@ class _MyBookCardState extends State<MyBookCard> {
 
               GestureDetector(
                 onLongPressStart: (value) {
-                  _showDeleteButton(context, value.globalPosition);
+                  _showDeleteBookButton(context, value.globalPosition, widget.book);
                 },
                 onTap: () {
                   Navigator.push(
@@ -155,7 +157,7 @@ class _MyBookCardState extends State<MyBookCard> {
     );
   }
 
-  void _showDeleteButton(BuildContext context, Offset offset) {
+  void _showDeleteBookButton(BuildContext context, Offset offset, Book book) {
     final RenderObject overlay =
     Overlay.of(context).context.findRenderObject()!;
 
@@ -169,7 +171,12 @@ class _MyBookCardState extends State<MyBookCard> {
               Text('Delete')
             ]),
             onTap: () {
-              //delete book logic
+              setState(() {
+                final dataManager =
+                Provider.of<DataManager>(context, listen: false);
+                dataManager.updateMyBooksList(
+                    book, true);
+              });
             },
           ),
         ],

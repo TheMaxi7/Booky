@@ -79,12 +79,12 @@ class _AddNewShelfState extends State<AddNewShelf> {
                 onPressed: () {
                   var newShelf = Shelf(name: titleController.text);
                   setState(() {
-                     var dataManager =
+                     final dataManager =
                         Provider.of<DataManager>(context, listen: false);
                     dataManager.updateShelfList(
                         newShelf, false);
+                     Navigator.pop(context);
                   });
-                  Navigator.pop(context);
 
                 },
                 style: ElevatedButton.styleFrom(

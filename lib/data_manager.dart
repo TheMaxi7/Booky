@@ -33,13 +33,30 @@ class DataManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void Update(){
-    notifyListeners();
-  }
   void removeBookFromShelf(Book item, Shelf shelf) {
     shelf.books.remove(item);
     notifyListeners();
   }
+
+  void addBookToMyBooks(Book item) {
+    _myBooks.add(item);
+    notifyListeners();
+  }
+
+  void removeBookFromMyBooks(Book item) {
+    _myBooks.remove(item);
+    notifyListeners();
+  }
+
+  void updateMyBooksList(Book book, bool action) {
+    if (action == false) {
+      addBookToMyBooks(book);
+    } else {
+      removeBookFromMyBooks(book);
+    }
+    notifyListeners();
+  }
+
 
   void addNewShelf(Shelf shelf) {
     _myShelves.add(shelf);

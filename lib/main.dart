@@ -40,7 +40,6 @@ class BookyApp extends StatelessWidget {
         theme: appTheme,
         title: "",
         home: const BookyAppHome(title: "My Library"),
-
       ),
     );
   }
@@ -62,7 +61,6 @@ class _BookyAppHomeState extends State<BookyAppHome>
 
   late TabController _myLibraryTabController;
   late TabController _dashboardTabController;
-
 
   @override
   void initState() {
@@ -122,10 +120,13 @@ class _BookyAppHomeState extends State<BookyAppHome>
                             ),
                             const SizedBox(height: 4),
                             GestureDetector(
-                              onTap: () {Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const UserProfile()));},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const UserProfile()));
+                              },
                               child: Text(
                                 "View Profile",
                                 style: Theme.of(context).textTheme.bodyMedium,
@@ -324,9 +325,9 @@ class _BookyAppHomeState extends State<BookyAppHome>
               ),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AddNewShelf())).then((value) => setState(){}));
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddNewShelf()),
+                );
               },
             ),
         ],
@@ -475,5 +476,4 @@ class _BookyAppHomeState extends State<BookyAppHome>
         return buildDefaultAppBar();
     }
   }
-
 }
