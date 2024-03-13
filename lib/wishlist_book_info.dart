@@ -1,4 +1,5 @@
 import 'package:booky/book.dart';
+import 'package:booky/shelves_list.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:booky/data_manager.dart';
@@ -216,7 +217,15 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ShelvesList(book:widget.book),
+                        ),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Color(0xFF58595B)),
                       backgroundColor: const Color(0xFF141d29),
@@ -233,7 +242,7 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      setState(() {});
+
                     },
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Color(0xFF58595B)),

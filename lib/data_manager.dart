@@ -39,7 +39,19 @@ class DataManager extends ChangeNotifier {
 
   }
 
+  void addBookManually(String title, String author,String genre,int pages,int isbn,Shelf shelf,String description){
+    Book newBook = Book();
+    newBook.cover='assets/images/deepwork.jpg';
+    newBook.name = title;
+    newBook.author = author;
+    newBook.genre = genre;
+    newBook.pages = pages;
+    newBook.isbn =isbn;
+    newBook.description=description;
+    addBookToShelf(newBook, shelf);
+    addBookToMyBooks(newBook);
 
+  }
   void addBookToShelf(Book item, Shelf shelf) {
     shelf.books.add(item);
     notifyListeners();

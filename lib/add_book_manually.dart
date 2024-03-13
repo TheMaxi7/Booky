@@ -1,4 +1,7 @@
+import 'package:booky/data_manager.dart';
+import 'package:booky/shelf.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddBookManually extends StatefulWidget {
   const AddBookManually({Key? key}) : super(key: key);
@@ -8,12 +11,15 @@ class AddBookManually extends StatefulWidget {
 }
 
 class _AddBookManuallyState extends State<AddBookManually> {
+  final DataManager manager = DataManager();
+  Shelf selectedShelf = Shelf();
   TextEditingController genreController = TextEditingController();
   TextEditingController shelfController = TextEditingController();
   TextEditingController pagesController = TextEditingController();
   TextEditingController isbnController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController authorController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
 
   void resetFields() {
     setState(() {
@@ -23,6 +29,7 @@ class _AddBookManuallyState extends State<AddBookManually> {
       isbnController.clear();
       titleController.clear();
       authorController.clear();
+      descriptionController.clear();
     });
   }
 
@@ -130,6 +137,7 @@ class _AddBookManuallyState extends State<AddBookManually> {
             ),
             TextField(
               controller: pagesController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -152,6 +160,7 @@ class _AddBookManuallyState extends State<AddBookManually> {
             ),
             TextField(
               controller: isbnController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -172,30 +181,30 @@ class _AddBookManuallyState extends State<AddBookManually> {
                 });
               },
             ),
-            TextField(
-              controller: shelfController,
-              decoration: InputDecoration(
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF141D29)),
-                ),
-                labelText: 'Shelf',
-                hintText: 'Enter author',
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF58595B)),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 8),
+              child: Text(
+                "Shelf",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    shelfController.text = '';
-                  }
-                });
-              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 8),
+              child: DropdownMenu(
+                hintText: 'Select shelf',
+                dropdownMenuEntries: manager.myShelves.map((shelf) {
+                  return  DropdownMenuEntry(
+                    value: shelf,
+                    label: shelf.name,
+                  );
+                }).toList(),
+                onSelected: (value) {
+                  selectedShelf = value!;
+                },
+              ),
             ),
             TextField(
-              controller: shelfController,
+              controller: descriptionController,
               decoration: InputDecoration(
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -211,7 +220,7 @@ class _AddBookManuallyState extends State<AddBookManually> {
               onChanged: (value) {
                 setState(() {
                   if (value.isEmpty) {
-                    shelfController.text = '';
+                    descriptionController.text = '';
                   }
                 });
               },
@@ -219,7 +228,22 @@ class _AddBookManuallyState extends State<AddBookManually> {
             SizedBox(
               width: ((MediaQuery.of(context).size.width) / 1.5),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  var title =titleController.text;
+                  var author =authorController.text;
+                  var genre = genreController.text;
+                  var pages= int.parse(pagesController.text);
+                  var isbn=int.parse(isbnController.text);
+                  var shelf=selectedShelf;
+                  var description=descriptionController.text;
+                  setState(() {
+                    final dataManager =
+                    Provider.of<DataManager>(context, listen: false);
+                    dataManager.addBookManually(
+                         title, author, genre, pages, isbn, shelf, description);
+                    Navigator.pop(context);
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                     shadowColor: Colors.black,
                     side: const BorderSide(color: Color(0xFF58595B)),

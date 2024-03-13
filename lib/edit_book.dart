@@ -16,6 +16,7 @@ class EditBook extends StatefulWidget {
 
 class _EditBookState extends State<EditBook> {
   final DataManager manager = DataManager();
+  Shelf selectedShelf = Shelf();
   TextEditingController titleController = TextEditingController();
   TextEditingController authorController = TextEditingController();
   late double _value;
@@ -24,8 +25,8 @@ class _EditBookState extends State<EditBook> {
 
   void resetFields() {
     setState(() {
-      titleController.clear();
-      authorController.clear();
+      authorController.text = widget.book.author;
+      titleController.text = widget.book.name;
     });
   }
 
@@ -34,6 +35,9 @@ class _EditBookState extends State<EditBook> {
     super.initState();
     _value = widget.book.pagesRead.toDouble();
     _pagesRead = widget.book.pagesRead;
+    authorController.text = widget.book.author;
+    titleController.text = widget.book.name;
+    myRate = widget.book.myRating;
   }
 
   @override
@@ -94,6 +98,7 @@ class _EditBookState extends State<EditBook> {
                       ),
                       labelText: 'Author',
                       hintText: widget.book.author,
+
                       enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF58595B)),
                       ),
@@ -119,11 +124,13 @@ class _EditBookState extends State<EditBook> {
                       hintText: findShelf(widget.book).name,
                       dropdownMenuEntries: manager.myShelves.map((shelf) {
                         return  DropdownMenuEntry(
-                          value: shelf.name,
+                          value: shelf,
                           label: shelf.name,
                         );
                       }).toList(),
-
+                      onSelected: (value) {
+                        selectedShelf = value!;
+                      },
                     ),
                   ),
                   Padding(
@@ -169,7 +176,7 @@ class _EditBookState extends State<EditBook> {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: 3,
+                    initialRating: widget.book.myRating,
                     itemSize: 32,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -194,7 +201,7 @@ class _EditBookState extends State<EditBook> {
                   var newTitle =titleController.text;
                   var newAuthor =authorController.text;
                   var oldShelf = findShelf(widget.book);
-                  var newShelf = findShelf(widget.book);
+                  var newShelf = selectedShelf;
                   var newProgress=_pagesRead;
                   var newMyRate=myRate;
                   setState(() {

@@ -1,15 +1,16 @@
 import 'package:booky/book.dart';
+import 'package:booky/shelves_list.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:booky/data_manager.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
+
 class ExploreBookInfo extends StatefulWidget {
   const ExploreBookInfo({Key? key, required this.book}) : super(key: key);
 
   final Book book;
-
   @override
   State<ExploreBookInfo> createState() => _ExploreBookInfoState();
 }
@@ -217,7 +218,15 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ShelvesList(book:widget.book),
+                        ),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Color(0xFF58595B)),
                       backgroundColor: const Color(0xFF141d29),
