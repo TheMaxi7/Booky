@@ -1,7 +1,9 @@
 import 'package:booky/book.dart';
 import 'package:booky/data_manager.dart';
+import 'package:booky/shelf.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 class EditBook extends StatefulWidget {
   const EditBook({Key? key, required this.book}) : super(key: key);
@@ -18,6 +20,7 @@ class _EditBookState extends State<EditBook> {
   TextEditingController authorController = TextEditingController();
   late double _value;
   late int _pagesRead;
+  double myRate = 0.0;
 
   void resetFields() {
     setState(() {
@@ -113,7 +116,7 @@ class _EditBookState extends State<EditBook> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10, right: 8),
                     child: DropdownMenu(
-                      hintText: 'Select shelf',
+                      hintText: findShelf(widget.book).name,
                       dropdownMenuEntries: manager.myShelves.map((shelf) {
                         return  DropdownMenuEntry(
                           value: shelf.name,
@@ -177,7 +180,9 @@ class _EditBookState extends State<EditBook> {
                       Icons.star,
                       color: Color(0xFF141D29),
                     ),
-                    onRatingUpdate: (rating) {},
+                    onRatingUpdate: (rating) {
+                      myRate = rating;
+                    },
                   ),
                 ],
               ),
@@ -185,7 +190,21 @@ class _EditBookState extends State<EditBook> {
             SizedBox(
               width: ((MediaQuery.of(context).size.width) / 1.5),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  var newTitle =titleController.text;
+                  var newAuthor =authorController.text;
+                  var oldShelf = findShelf(widget.book);
+                  var newShelf = findShelf(widget.book);
+                  var newProgress=_pagesRead;
+                  var newMyRate=myRate;
+                  setState(() {
+                    final dataManager =
+                    Provider.of<DataManager>(context, listen: false);
+                    dataManager.updateBookInfo(
+                        widget.book, newTitle, newAuthor, oldShelf, newShelf, newProgress, newMyRate);
+                    Navigator.pop(context);
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                     shadowColor: Colors.black,
                     side: const BorderSide(color: Color(0xFF58595B)),
@@ -203,5 +222,19 @@ class _EditBookState extends State<EditBook> {
         ),
       ),
     );
+  }
+
+  Shelf findShelf (Book book) {
+    Shelf shelfFound = Shelf();
+    for (int i = 0; i < manager.myShelves.length; i++) {
+      for (int j = 0; j < manager.myShelves[i].books.length; j++) {
+        if (manager.myShelves[i].books[j] == book) {
+          shelfFound = manager.myShelves[i];
+          break;
+        }
+
+      }
+    }
+    return shelfFound;
   }
 }

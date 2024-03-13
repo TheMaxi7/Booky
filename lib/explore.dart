@@ -66,7 +66,7 @@ class _ExploreState extends State<Explore> {
                       style: Theme.of(context).textTheme.headlineSmall),
                   const SizedBox(height: 8),
                   SizedBox(
-                    height: 180,
+                    height: (MediaQuery.of(context).size.width)/3*1.8,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),
@@ -107,7 +107,7 @@ class _ExploreState extends State<Explore> {
                       style: Theme.of(context).textTheme.headlineSmall),
                   const SizedBox(height: 8),
                   SizedBox(
-                    height: 180,
+                    height: (MediaQuery.of(context).size.width)/3*1.8,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),
@@ -148,7 +148,7 @@ class _ExploreState extends State<Explore> {
                       style: Theme.of(context).textTheme.headlineSmall),
                   const SizedBox(height: 8),
                   SizedBox(
-                    height: 180,
+                    height: (MediaQuery.of(context).size.width)/3*1.8,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(8),

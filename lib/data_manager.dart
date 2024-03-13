@@ -28,6 +28,18 @@ class DataManager extends ChangeNotifier {
   List<Shelf> get myShelves => List.from(_myShelves);
 
 
+
+  void updateBookInfo(Book book, String newTitle, String newAuthor, Shelf oldShelf, Shelf newShelf, int newProgress, double newMyRate ) {
+     book.name = newTitle;
+     book.author = newAuthor;
+     removeBookFromShelf(book, oldShelf);
+     addBookToShelf(book, newShelf);
+     book.pagesRead = newProgress;
+     book.myRating = newMyRate;
+
+  }
+
+
   void addBookToShelf(Book item, Shelf shelf) {
     shelf.books.add(item);
     notifyListeners();
