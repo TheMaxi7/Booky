@@ -54,8 +54,12 @@ class _ChallengeCardState extends State<ChallengeCard> {
                 );
               },
               child: Card(
+                color: const Color(0xFFDCE2EB),
+                elevation: 0,
+                surfaceTintColor: const Color(0xFFDCE2EB),
                 child: Icon(
                   widget.challenge.trophy,
+                  size: (MediaQuery.of(context).size.width/8),
                 ),
               ),
             ),

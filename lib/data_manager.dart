@@ -1,5 +1,6 @@
 import 'package:booky/challenges.dart';
 import 'package:booky/shelf.dart';
+import 'package:booky/standard_challenges.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 import 'package:booky/sample_data.dart';
@@ -15,7 +16,7 @@ class DataManager extends ChangeNotifier {
   final List<Book> _myWishlist = SampleData.myWishlist;
   final List<Challenge> _challenges = SampleData.allChallenges;
   final List<Shelf> _myShelves = SampleData.myShelves;
-
+  final List<StandardChallenge> _standardChallenges = SampleData.allStandardChallenges;
 
 
   List<Book> get allBooks => List.unmodifiable(_allBooks);
@@ -26,8 +27,15 @@ class DataManager extends ChangeNotifier {
   List<Book> get myWishlist => List.from(_myWishlist);
   List<Challenge> get allChallenges => List.from(_challenges);
   List<Shelf> get myShelves => List.from(_myShelves);
+  List<StandardChallenge> get allStandardChallenges => List.from(_standardChallenges);
 
 
+
+  void updateChallenge(StandardChallenge challenge, int progress, int newGoal){
+    challenge.progress = progress;
+    challenge.booksToRead = newGoal;
+    notifyListeners();
+  }
 
   void updateBookInfo(Book book, String newTitle, String newAuthor, Shelf oldShelf, Shelf newShelf, int newProgress, double newMyRate ) {
      book.name = newTitle;
@@ -36,7 +44,7 @@ class DataManager extends ChangeNotifier {
      addBookToShelf(book, newShelf);
      book.pagesRead = newProgress;
      book.myRating = newMyRate;
-
+     notifyListeners();
   }
 
   void addBookManually(String title, String author,String genre,int pages,int isbn,Shelf shelf,String description){

@@ -17,13 +17,13 @@ class SampleData {
   static StandardChallenge monthlyChallenge = StandardChallenge(
     name: "Monthly Challenge",
     booksToRead: 2,
-    progress: 0,
+    progress: 1,
     isCompleted: false,
   );
   static StandardChallenge yearlyChallenge = StandardChallenge(
     name: "Yearly Challenge",
     booksToRead: 24,
-    progress: 0,
+    progress: 4,
     isCompleted: false,
   );
 
@@ -493,6 +493,11 @@ class SampleData {
     challenge6,
     challenge7,
     challenge8,
+  ];
+
+  static List<StandardChallenge> allStandardChallenges =[
+    monthlyChallenge,
+    yearlyChallenge,
   ];
 
   static List<Shelf> myShelves = [
