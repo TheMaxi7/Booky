@@ -39,6 +39,7 @@ dependencies:
   pie_chart: ^5.4.0
   syncfusion_flutter_charts: ^24.2.9
   simple_barcode_scanner: ^0.0.8
+  text_area: ^0.0.3
 
 dev_dependencies:
   flutter_test:

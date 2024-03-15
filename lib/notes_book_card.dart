@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:booky/new_note.dart';
+import 'package:booky/new_quote.dart';
 import 'package:booky/notes_book_info.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
@@ -118,30 +120,26 @@ class _NotesBookCardState extends State<NotesBookCard> {
                         ),
                         itemBuilder: (context) => [
                           const PopupMenuItem(
-                            value: 'add_book_with_isbn',
-                            child: Text('Add Book with ISBN'),
+                            value: 'new_note',
+                            child: Text('New note'),
                           ),
                           const PopupMenuItem(
-                            value: 'add_by_keyword',
-                            child: Text('Add by keyword'),
+                            value: 'now_quote',
+                            child: Text('New quote'),
                           ),
                         ],
                         onSelected: (value) async {
-                          if (value == 'add_book_with_isbn') {
+                          if (value == 'new_note') {
                             await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SimpleBarcodeScannerPage(),
+                                  builder: (context) => NewNote(book: widget.book),
                                 ));
-                          } else if (value == 'add_by_keyword') {
-                            setState(() {
-                              _selectedIconIndex = 1;
-                            });
-                          } else if (value == 'add_book_manually') {
+                          } else{
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const AddBookManually()));
+                                    builder: (context) =>  NewQuote(book: widget.book)));
                           }
                         },
                       ),

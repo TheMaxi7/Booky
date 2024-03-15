@@ -1,38 +1,48 @@
+import 'package:booky/edit_note.dart';
+import 'package:booky/note.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'note.dart';
 
-class BookNotes extends StatelessWidget {
+
+class BookNotes extends StatefulWidget {
+  const BookNotes({Key? key, required this.notes}) : super(key: key);
   final List<Note> notes;
 
-  const BookNotes({Key? key, required this.notes}) : super(key: key);
+  @override
+  State<BookNotes> createState() => _BookNotesState();
+}
+
+class _BookNotesState extends State<BookNotes> {
 
   @override
   Widget build(BuildContext context) {
     List<Widget> noteList = [];
 
-    for (int i = 0; i < notes.length; i++) {
-      final note = notes[i];
+    for (int i = 0; i < widget.notes.length; i++) {
+      final note = widget.notes[i];
       noteList.add(
-        Card(
+          Card(
+          surfaceTintColor: const Color(0xFFDCE2EB),
+          elevation: 2,
           margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 8, right: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('Note ${note.index.toString()}'),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const Text(
-                        'edit',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                    Text(note.name, style: Theme.of(context).textTheme.headlineMedium,),
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  EditNote(note: note)));
+                      },
                     ),
                   ],
                 ),
@@ -72,4 +82,6 @@ class BookNotes extends StatelessWidget {
       children: noteList,
     );
   }
+
+
 }

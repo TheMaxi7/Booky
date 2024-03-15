@@ -99,7 +99,8 @@ class SampleData {
     notes: [
       Note(
         index: 1,
-        note: "lorem",
+        name: "The Five Big Ideas",
+        note: "In order to produce the absolute best stuff you’re capable of, you need to commit to deep work.The ability to quickly master hard things and the ability to produce at an elite level, in terms of both quality and speed, are two core abilities for thriving in today’s economy.\“To learn hard things quickly, you must focus intensely without distraction.\”\“Your work is craft, and if you hone your ability and apply it with respect and care, then like the skilled wheelwright you can generate meaning in the daily efforts of your professional life.”\“The key to developing a deep work habit is to move beyond good intentions and add routines and rituals to your working life designed to minimize the amount of your limited willpower necessary to transition into and maintain a state of unbroken concentration.”",
         page: 111,
       ),
     ],
