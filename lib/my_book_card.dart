@@ -144,7 +144,7 @@ class _MyBookCardState extends State<MyBookCard> {
                       SizedBox(
                         width: (MediaQuery.of(context).size.width) / 2,
                         child: ExpandableText(
-                          '"${findFavourite(widget.book)}"',
+                          '"${findPinnedQuote(widget.book)}"',
                           style: Theme.of(context).textTheme.bodyMedium,
                           expandText: 'show more',
                           collapseText: 'show less',

@@ -90,18 +90,46 @@ class SampleData {
     genre: "Self Help",
     quotes: [
       Quote(
+        name: "Learn",
         index: 1,
         quote: "If you can’t learn, you can’t thrive.",
         page: 111,
-        favourite: true,
-      )
+        isPinned: true,
+      ),
+      Quote(
+        name: "Clarity",
+        index: 1,
+        quote: "Clarity about what matters provides clarity about what does not.",
+        page: 111,
+        isPinned: false,
+      ),
+      Quote(
+        name: "Focus",
+        index: 1,
+        quote: "Who you are, what you think, feel, and do, what you love—is the sum of what you focus on.",
+        page: 111,
+        isPinned: false,
+      ),
     ],
     notes: [
       Note(
         index: 1,
         name: "The Five Big Ideas",
         note: "In order to produce the absolute best stuff you’re capable of, you need to commit to deep work.The ability to quickly master hard things and the ability to produce at an elite level, in terms of both quality and speed, are two core abilities for thriving in today’s economy.\“To learn hard things quickly, you must focus intensely without distraction.\”\“Your work is craft, and if you hone your ability and apply it with respect and care, then like the skilled wheelwright you can generate meaning in the daily efforts of your professional life.”\“The key to developing a deep work habit is to move beyond good intentions and add routines and rituals to your working life designed to minimize the amount of your limited willpower necessary to transition into and maintain a state of unbroken concentration.”",
-        page: 111,
+        page: 221,
+      ),
+      Note(
+        index: 2,
+        name: "The Five Big Ideas",
+        note: "In order to produce the absolute best stuff you’re capable of, you need to commit to deep work.The ability to quickly master hard things and the ability to produce at an elite level, in terms of both quality and speed, are two core abilities for thriving in today’s economy.\“To learn hard things quickly, you must focus intensely without distraction.\”\“Your work is craft, and if you hone your ability and apply it with respect and care, then like the skilled wheelwright you can generate meaning in the daily efforts of your professional life.”\“The key to developing a deep work habit is to move beyond good intentions and add routines and rituals to your working life designed to minimize the amount of your limited willpower necessary to transition into and maintain a state of unbroken concentration.”",
+        page: 22233,
+      ),
+      Note(
+        index: 3,
+        name: "The Five Big Ideas",
+        note: "In order to produce the absolute best stuff you’re capable of, you need to commit to deep work.The ability to quickly master hard things and the ability to produce at an elite level, in terms of both quality and speed, are two core abilities for thriving in today’s economy.\“To learn hard things quickly, you must focus intensely without distraction.\”\“Your work is craft, and if you hone your ability and apply it with respect and care, then like the skilled wheelwright you can generate meaning in the daily efforts of your professional life.”\“The key to developing a deep work habit is to move beyond good intentions and add routines and rituals to your working life designed to minimize the amount of your limited willpower necessary to transition into and maintain a state of unbroken concentration.”",
+        page: 4444,
+        isPinned: true,
       ),
     ],
   );
@@ -125,7 +153,7 @@ class SampleData {
         quote:
         "If you can’t learn, you can’t yolo.agarsgefkjlarhbgvlikaebgrvliqehvcobrlighvlkbaio;v o;agh ;oabjrgil;oaehg p'g;oaehg'p NRG ;ONGV;'LAN;OG HJGN ;AEOR HMN",
         page: 111,
-        favourite: false,
+        isPinned: false,
       )
     ],
     notes: [
@@ -175,7 +203,7 @@ class SampleData {
         quote:
         "If you can’t learn, you can’t yolo.agarsgefkjlarhbgvlikaebgrvliqehvcobrlighvlkbaio;v o;agh ;oabjrgil;oaehg p'g;oaehg'p NRG ;ONGV;'LAN;OG HJGN ;AEOR HMN",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -205,7 +233,7 @@ class SampleData {
         quote:
         "Sometimes we must walk into the darkness in order to understand what light really is.",
         page: 111,
-        favourite: true,
+          isPinned: true,
       )
     ],
     notes: [
@@ -235,7 +263,7 @@ class SampleData {
         quote:
         "You can measure your worth by your dedication to your path, not by your successes or failures.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -265,7 +293,7 @@ class SampleData {
         quote:
         "Inertia. Guy’s law of enchantment: “People at rest will remain at rest, and people in motion will keep moving in the same direction unless an outside enchanter acts upon them.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -295,7 +323,7 @@ class SampleData {
         quote:
         "Those we love never truly leave us, Harry. There are things that death cannot touch.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -325,7 +353,7 @@ class SampleData {
         quote:
         "But in the end it's only a passing thing, this shadow; even darkness must pass.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -357,7 +385,7 @@ class SampleData {
         quote:
         "True ignorance is not the absence of knowledge, it’s the refusal to acquire it.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [
@@ -388,7 +416,7 @@ class SampleData {
         index: 1,
         quote: "Who you are is defined by what you’re willing to struggle for.",
         page: 111,
-        favourite: true,
+        isPinned: false,
       )
     ],
     notes: [

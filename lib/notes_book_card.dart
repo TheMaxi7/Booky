@@ -72,34 +72,34 @@ class _NotesBookCardState extends State<NotesBookCard> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "Favourite quote",
+                            "Pinned quote",
                             style:
                             Theme.of(context).textTheme.headlineMedium,
                           ),
                           ExpandableText(
-                            "\"${findFavourite(widget.book)}\"",
+                            "\"${findPinnedQuote(widget.book)}\"",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall
                                 ?.copyWith(fontStyle: FontStyle.italic),
                             expandText: 'show more',
                             collapseText: 'show less',
-                            maxLines: 4,
+                            maxLines: 3,
                           ),
                           Text(
-                            "Last note",
+                            "Pinned note",
                             style:
                             Theme.of(context).textTheme.headlineMedium,
                           ),
                           ExpandableText(
-                            "\"${findLastNote(widget.book)}\"",
+                            "\"${findPinnedNote(widget.book)}\"",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall
                                 ?.copyWith(fontStyle: FontStyle.italic),
                             expandText: 'show more',
                             collapseText: 'show less',
-                            maxLines: 4,
+                            maxLines: 3,
                           ),
                         ],
                       ),
@@ -116,7 +116,7 @@ class _NotesBookCardState extends State<NotesBookCard> {
                       PopupMenuButton(
                         icon: const Icon(
                           Icons.add,
-                          color: Color(0xFF58595B),
+                          color: Color(0xFF141D29),
                         ),
                         itemBuilder: (context) => [
                           const PopupMenuItem(
@@ -155,11 +155,11 @@ class _NotesBookCardState extends State<NotesBookCard> {
   }
 }
 
-String findFavourite(Book book) {
-  String favoriteQuote = "No quote selected";
+String findPinnedQuote(Book book) {
+  String favoriteQuote = "No pinned quote";
 
   for (int i = 0; i < book.quotes.length; i++) {
-    if (book.quotes[i].favourite) {
+    if (book.quotes[i].isPinned) {
       favoriteQuote = book.quotes[i].quote;
       break;
     }
@@ -168,11 +168,14 @@ String findFavourite(Book book) {
   return favoriteQuote;
 }
 
-String findLastNote(Book book) {
-  String lastNote = "No notes";
+String findPinnedNote(Book book) {
+  String pinnedNote = "No pinned note";
 
-    if (book.notes.isNotEmpty) {
-      lastNote = book.notes[book.notes.length-1].note;
+  for (int i = 0; i < book.notes.length; i++) {
+    if (book.notes[i].isPinned) {
+      pinnedNote = book.notes[i].note;
+      break;
     }
-  return lastNote;
+  }
+  return pinnedNote;
 }

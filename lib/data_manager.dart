@@ -164,7 +164,7 @@ class DataManager extends ChangeNotifier {
     newQuote.index = book.quotes.length+1;
     newQuote.quote = noteContent;
     newQuote.page = pageNumber;
-    newQuote.favourite=setFavourite;
+    newQuote.isPinned=setFavourite;
     addQuoteToBook(newQuote, book);
     notifyListeners();
   }
@@ -194,6 +194,38 @@ class DataManager extends ChangeNotifier {
     quote.name=name;
     quote.quote=content;
     quote.page=page;
+    notifyListeners();
+  }
+
+  void pinNote(List<Note> notes, Note note) {
+    for(int i=0; i<notes.length; i++){
+      if(notes[i].isPinned == true){
+        notes[i].isPinned = false;
+        break;
+      }
+    }
+    note.isPinned=true;
+    notifyListeners();
+  }
+
+  void deleteNote(List<Note> notes, Note note){
+    notes.remove(note);
+    notifyListeners();
+  }
+
+  void pinQuote(List<Quote> quotes, Quote quote) {
+    for(int i=0; i<quotes.length; i++){
+      if(quotes[i].isPinned == true){
+        quotes[i].isPinned = false;
+        break;
+      }
+    }
+    quote.isPinned=true;
+    notifyListeners();
+  }
+
+  void deleteQuote(List<Quote> quotes, Quote quote){
+    quotes.remove(quote);
     notifyListeners();
   }
 }
