@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:booky/notes_book_info.dart';
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 
@@ -54,49 +57,100 @@ class _NotesBookCardState extends State<NotesBookCard> {
           ),
           SizedBox(width: (MediaQuery.of(context).size.width) / 15),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 4),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: (MediaQuery.of(context).size.width) / 5 * 1.51,
-                    child: Text(
-                      findFavourite(widget.book),
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines:
-                          (((MediaQuery.of(context).size.width) / 5 * 1.51) /
-                                  2) ~/
-                              10,
+            child: Column(children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 4),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Favourite quote",
+                            style:
+                            Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          ExpandableText(
+                            "\"${findFavourite(widget.book)}\"",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(fontStyle: FontStyle.italic),
+                            expandText: 'show more',
+                            collapseText: 'show less',
+                            maxLines: 4,
+                          ),
+                          Text(
+                            "Last note",
+                            style:
+                            Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          ExpandableText(
+                            "\"${findLastNote(widget.book)}\"",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(fontStyle: FontStyle.italic),
+                            expandText: 'show more',
+                            collapseText: 'show less',
+                            maxLines: 4,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  children: [
-                    OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFF58595B)),
-                        backgroundColor: const Color(0xFF141d29),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.share),
+                        onPressed: () {},
                       ),
-                      child: Text('Add note',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(color: const Color(0xFFDCE2EB))),
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "View all",
-                      style: TextStyle(color: Color(0xFF58595B)),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+                      PopupMenuButton(
+                        icon: const Icon(
+                          Icons.add,
+                          color: Color(0xFF58595B),
+                        ),
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(
+                            value: 'add_book_with_isbn',
+                            child: Text('Add Book with ISBN'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'add_by_keyword',
+                            child: Text('Add by keyword'),
+                          ),
+                        ],
+                        onSelected: (value) async {
+                          if (value == 'add_book_with_isbn') {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SimpleBarcodeScannerPage(),
+                                ));
+                          } else if (value == 'add_by_keyword') {
+                            setState(() {
+                              _selectedIconIndex = 1;
+                            });
+                          } else if (value == 'add_book_manually') {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AddBookManually()));
+                          }
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ]),
+          )
         ],
       ),
     );
@@ -114,4 +168,13 @@ String findFavourite(Book book) {
   }
 
   return favoriteQuote;
+}
+
+String findLastNote(Book book) {
+  String lastNote = "No notes";
+
+    if (book.notes.isNotEmpty) {
+      lastNote = book.notes[book.notes.length-1].note;
+    }
+  return lastNote;
 }
