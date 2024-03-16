@@ -10,6 +10,8 @@ class Book {
   double allRating;
   String publishDate="";
   int isbn;
+  String amazonUrl="";
+  String infoUrl="";
   String description = "";
   String genre = "";
   bool isStarred = false;
@@ -23,6 +25,8 @@ class Book {
     this.name = "",
     this.author="",
     this.isbn=0,
+    this.amazonUrl="",
+    this.infoUrl="",
     this.cover = "",
     this.publishDate="",
     this.myRating = 0.0,

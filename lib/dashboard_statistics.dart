@@ -45,6 +45,7 @@ class _DashboardStatisticsTabTabState extends State<DashboardStatisticsTab> {
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
+                          ignoreGestures: true,
                           itemPadding:
                               const EdgeInsets.symmetric(horizontal: 4.0),
                           itemBuilder: (context, _) => const Icon(

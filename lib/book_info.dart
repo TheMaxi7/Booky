@@ -152,6 +152,7 @@ class _BookInfoState extends State<BookInfo> {
                     padding: const EdgeInsets.fromLTRB(10, 0, 8, 4),
                     child: RatingBar.builder(
                       itemSize: 15,
+                      ignoreGestures: true,
                       initialRating: widget.book.myRating,
                       minRating: 1,
                       direction: Axis.horizontal,

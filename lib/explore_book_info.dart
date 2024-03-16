@@ -5,23 +5,27 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:booky/data_manager.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExploreBookInfo extends StatefulWidget {
   const ExploreBookInfo({Key? key, required this.book}) : super(key: key);
 
   final Book book;
+
   @override
   State<ExploreBookInfo> createState() => _ExploreBookInfoState();
 }
 
 class _ExploreBookInfoState extends State<ExploreBookInfo> {
   bool _isStarred = false;
+  late Uri _url = Uri();
 
   @override
   void initState() {
     super.initState();
     _isStarred = widget.book.isStarred;
+    _url = Uri.parse(widget.book.amazonUrl);
   }
 
   @override
@@ -37,7 +41,9 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
               Icons.share,
               color: Color(0xFF58595B),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Share.share('Check out this book: ${widget.book.infoUrl}\n\nSent by Booky');
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -125,6 +131,7 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                               padding: const EdgeInsets.only(bottom: 4),
                               child: RatingBar.builder(
                                 itemSize: 15,
+                                ignoreGestures: true,
                                 initialRating: widget.book.allRating,
                                 minRating: 1,
                                 direction: Axis.horizontal,
@@ -222,8 +229,7 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ShelvesList(book:widget.book),
+                          builder: (context) => ShelvesList(book: widget.book),
                         ),
                       );
                     },
@@ -242,9 +248,7 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
+                    onPressed: _launchUrl,
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Color(0xFF58595B)),
                       backgroundColor: const Color(0xFFDCE2EB),
@@ -263,5 +267,11 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
         ],
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }

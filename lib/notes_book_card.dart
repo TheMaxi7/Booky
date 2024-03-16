@@ -6,6 +6,7 @@ import 'package:booky/notes_book_info.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NotesBookCard extends StatefulWidget {
   const NotesBookCard({Key? key, required this.book}) : super(key: key);
@@ -109,9 +110,28 @@ class _NotesBookCardState extends State<NotesBookCard> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.share),
-                        onPressed: () {},
+                      PopupMenuButton(
+                        icon: const Icon(
+                          Icons.share,
+                          color: Color(0xFF141D29),
+                        ),
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(
+                            value: 'share_quote',
+                            child: Text('Share quote'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'share_note',
+                            child: Text('Share note'),
+                          ),
+                        ],
+                        onSelected: (value) async {
+                          if (value == 'share_quote') {
+                            Share.share('Quote from: ${widget.book.name}\n\n"${findPinnedQuote(widget.book)}"\n\nSent by Booky');
+                          } else{
+                            Share.share('Note from: ${widget.book.name}\n\n${findPinnedNote(widget.book)}\n\nSent by Booky');
+                          }
+                        },
                       ),
                       PopupMenuButton(
                         icon: const Icon(
@@ -120,12 +140,12 @@ class _NotesBookCardState extends State<NotesBookCard> {
                         ),
                         itemBuilder: (context) => [
                           const PopupMenuItem(
-                            value: 'new_note',
-                            child: Text('New note'),
-                          ),
-                          const PopupMenuItem(
                             value: 'now_quote',
                             child: Text('New quote'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'new_note',
+                            child: Text('New note'),
                           ),
                         ],
                         onSelected: (value) async {
@@ -167,6 +187,7 @@ String findPinnedQuote(Book book) {
 
   return favoriteQuote;
 }
+
 
 String findPinnedNote(Book book) {
   String pinnedNote = "No pinned note";

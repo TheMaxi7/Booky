@@ -17,7 +17,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
               onTap: () {
@@ -65,7 +65,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
             ),
             Text(
               widget.challenge.name,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
           ],

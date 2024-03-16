@@ -5,6 +5,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MyBookCard extends StatefulWidget {
   const MyBookCard({Key? key, required this.book}) : super(key: key);
@@ -17,6 +18,8 @@ class MyBookCard extends StatefulWidget {
 
 class _MyBookCardState extends State<MyBookCard> {
   final DataManager manager = DataManager();
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -80,8 +83,8 @@ class _MyBookCardState extends State<MyBookCard> {
                           ),
                           IconButton(
                             icon: const Icon(Icons.share),
-                            onPressed: () {
-                            },
+                            onPressed: (){
+                            Share.share('check out this book: ${widget.book.infoUrl}\n\nSent by Booky');},
                           ),
                         ],
                       ),
@@ -199,6 +202,13 @@ class _MyBookCardState extends State<MyBookCard> {
       }
     }
     return shelfFound;
+  }
+
+  void _onShare(BuildContext context, String url) async {
+    String uri = 'Check%this%book%out:$url';
+    if (uri.isNotEmpty) {
+      await Share.shareUri(Uri.parse(uri));
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import 'package:booky/wishlist_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WishlistBookCard extends StatefulWidget {
   const WishlistBookCard({Key? key, required this.book}) : super(key: key);
@@ -70,7 +71,9 @@ class _WishlistBookCardState extends State<WishlistBookCard> {
                     ),
                     IconButton(
                       icon: const Icon(Icons.share),
-                      onPressed: () {},
+                      onPressed: () {
+                        Share.share('Check out this book: ${widget.book.infoUrl}\n\nSent by Booky');
+                      },
                     ),
                   ],
                 ),

@@ -74,6 +74,11 @@ class SampleData {
     info: "Read 5 different books of the same author.",
     isCompleted: false,
   );
+  static Challenge challenge9 = Challenge(
+    name: "Dystopian Dive",
+    info: "Read 5 different dystopian novels.",
+    isCompleted: false,
+  );
 
   static Book book1 = Book(
     name: "Deep Work",
@@ -84,6 +89,8 @@ class SampleData {
     description: "One of the most valuable skills in our economy is becoming increasingly rare. If you master this skill, you'll achieve extraordinary results.Deep work is the ability to focus without distraction on a cognitively demanding task. It's a skill that allows you to quickly master complicated information and produce better results in less time. Deep work will make you better at what you do and provide the sense of true fulfillment that comes from craftsmanship. In short, deep work is like a super power in our increasingly competitive twenty-first century economy. And yet, most people have lost the ability to go deep-spending their days instead in a frantic blur of e-mail and social media, not even realizing there's a better way.In Deep Work, author and professor Cal Newport flips the narrative on impact in a connected age. Instead of arguing distraction is bad, he instead celebrates the power of its opposite. Dividing this book into two parts, he first makes the case that in almost any profession, cultivating a deep work ethic will produce massive benefits. He then presents a rigorous training regimen, presented as a series of four rules for transforming your mind and habits to support this skill.A mix of cultural criticism and actionable advice, Deep Work takes the reader on a journey through memorable stories-from Carl Jung building a stone tower in the woods to focus his mind, to a social media pioneer buying a round-trip business class ticket to Tokyo to write a book free from distraction in the air-and no-nonsense advice, such as the claim that most serious professionals should quit social media and that you should practice being bored. Deep Work is an indispensable guide to anyone seeking focused success in a distracted world.",
     isStarred: false,
     pages: 296,
+    amazonUrl: "https://www.amazon.com/s?k=Quiet&ref=nb_sb_noss",
+    infoUrl: "https://openlibrary.org/works/OL17713267W/Deep_Work?edition=key%3A/books/OL27281494M",
     isbn: 9781455586691,
     publishDate: "04/09/2018",
     pagesRead: 100,
@@ -222,6 +229,8 @@ class SampleData {
     description:
     "The first book from Coach Mike, well-known life coach, personal development coach, addiction specialist, and soon-to-be Dr. Phil Show an inspiring, invigorating program to help you examine where your life is now. Determine once and for all who you want to be and where you want to go, and live authentically and happily forever.",
     pages: 352,
+    amazonUrl: "https://www.amazon.com/s?k=Best+Self&ref=nb_sb_noss",
+    infoUrl: "https://openlibrary.org/works/OL17713267W/Deep_Work?edition=key%3A/books/OL27281494M",
     allRating: 4,
     publishDate: "08/01/2019",
     isStarred: false,
@@ -522,6 +531,7 @@ class SampleData {
     challenge6,
     challenge7,
     challenge8,
+    challenge9,
   ];
 
   static List<StandardChallenge> allStandardChallenges =[

@@ -5,6 +5,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:booky/data_manager.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WishlistBookInfo extends StatefulWidget {
   const WishlistBookInfo({super.key, required this.book});
@@ -36,7 +37,9 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
               Icons.share,
               color: Color(0xFF58595B),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Share.share('Check out this book: ${widget.book.infoUrl}\n\nSent by Booky');
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -124,6 +127,7 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                               padding: const EdgeInsets.only(bottom: 4),
                               child: RatingBar.builder(
                                 itemSize: 15,
+                                ignoreGestures: true,
                                 initialRating: widget.book.allRating,
                                 minRating: 1,
                                 direction: Axis.horizontal,
