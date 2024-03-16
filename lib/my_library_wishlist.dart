@@ -1,4 +1,5 @@
 import 'package:booky/data_manager.dart';
+import 'package:booky/filters_wishlist.dart';
 import 'package:booky/wishlist_book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,13 @@ class MyLibraryWishlist extends StatefulWidget {
 }
 
 class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
-  bool _sortAscending = true;
+  late bool _sortAscending;
 
+  @override
+  void initState() {
+    super.initState();
+    _sortAscending = true;
+  }
   @override
   Widget build(BuildContext context) {
     return Consumer<DataManager>(
@@ -26,7 +32,14 @@ class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FiltersWishlist()
+                          ),
+                        );
+                      },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Color(0xFF58595B)),
                       ),
@@ -38,7 +51,14 @@ class _MyLibraryWishlistState extends State<MyLibraryWishlist> {
                     OutlinedButton.icon(
                       onPressed: () {
                         setState(() {
+                          final dataManager =
+                          Provider.of<DataManager>(context, listen: false);
                           _sortAscending = !_sortAscending;
+                          if (_sortAscending) {
+                            dataManager.sortWishlistAZ();
+                          } else {
+                            dataManager.sortWishlistZA();
+                          }
                         });
                       },
                       style: OutlinedButton.styleFrom(

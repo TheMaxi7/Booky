@@ -1,3 +1,4 @@
+import 'package:booky/filters_list.dart';
 import 'package:booky/my_book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,12 @@ class MyLibraryBooks extends StatefulWidget {
 }
 
 class _MyLibraryBooksState extends State<MyLibraryBooks> {
-  bool _sortAscending = true;
+  late bool _sortAscending;
+  @override
+  void initState() {
+    super.initState();
+    _sortAscending = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,14 @@ class _MyLibraryBooksState extends State<MyLibraryBooks> {
                   children: [
 
                     OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FiltersList()
+                          ),
+                        );
+                      },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Color(0xFF58595B)),
                       ),
@@ -41,7 +54,14 @@ class _MyLibraryBooksState extends State<MyLibraryBooks> {
                     OutlinedButton.icon(
                       onPressed: () {
                         setState(() {
+                          final dataManager =
+                          Provider.of<DataManager>(context, listen: false);
                           _sortAscending = !_sortAscending;
+                          if (_sortAscending) {
+                            dataManager.sortBooksAZ();
+                          } else {
+                            dataManager.sortBooksZA();
+                          }
                         });
                       },
                       style: OutlinedButton.styleFrom(

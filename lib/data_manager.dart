@@ -27,7 +27,7 @@ class DataManager extends ChangeNotifier {
 
   List<Book> get newReleasesBooks => List.unmodifiable(_newReleasesBooks);
 
-  List<Book> get myBooks => List.unmodifiable(_myBooks);
+  List<Book> get myBooks => List.from(_myBooks);
 
   List<Book> get myWishlist => List.from(_myWishlist);
 
@@ -56,6 +56,62 @@ class DataManager extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  void sortBooksAZ() {
+ _myBooks.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    notifyListeners();
+  }
+
+  void sortBooksZA() {
+    _myBooks.sort((a, b) => b.name.toLowerCase().compareTo(a.name.toLowerCase()));
+    notifyListeners();
+  }
+
+  void sortWishlistAZ() {
+    _myWishlist.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    notifyListeners();
+  }
+
+  void sortWishlistZA() {
+    _myWishlist.sort((a, b) => b.name.toLowerCase().compareTo(a.name.toLowerCase()));
+    notifyListeners();
+  }
+
+  List<Book> booksCompleted = [];
+  List<Book> filterCompleted(){
+    booksCompleted.clear();
+    for(var item in _myBooks){
+      if(((item.pagesRead / item.pages) * 100).toInt() == 100){
+        booksCompleted.add(item);
+      }
+    }
+    notifyListeners();
+    return booksCompleted;
+  }
+
+  List<Book> wishListFiltered = [];
+  List<Book> filterWishlist(String genre){
+    wishListFiltered.clear();
+    for(var item in _myWishlist){
+      if(item.genre == genre){
+        wishListFiltered.add(item);
+      }
+    }
+    notifyListeners();
+    return wishListFiltered;
+  }
+
+  List<Book> booksStarted = [];
+  List<Book> filterStarted(){
+    booksStarted.clear();
+    for(var item in _myBooks){
+      if(((item.pagesRead / item.pages) * 100).toInt() != 100){
+        booksStarted.add(item);
+      }
+    }
+    notifyListeners();
+    return booksStarted;
+  }
   void addBookManually(String title, String author, String genre, int pages,
       int isbn, Shelf shelf, String description) {
     Book newBook = Book();
@@ -99,6 +155,7 @@ class DataManager extends ChangeNotifier {
 
   List<Book> searchResults = [];
   List<Book> searchBook(String value, List<Book> books) {
+    searchResults.clear();
     String lowercaseValue = value.toLowerCase();
 
     searchResults = books.where((book) => book.name.toLowerCase().contains(lowercaseValue)).toList();
