@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:booky/add_book_manually.dart';
 import 'package:booky/add_new_shelf.dart';
+import 'package:booky/book.dart';
 import 'package:booky/contact_us.dart';
 import 'package:booky/dashboard_statistics.dart';
 import 'package:booky/data_manager.dart';
@@ -11,6 +10,10 @@ import 'package:booky/my_library_shelves.dart';
 import 'package:booky/my_library_wishlist.dart';
 import 'package:booky/notes.dart';
 import 'package:booky/search_book_in_library_screen.dart';
+import 'package:booky/search_in_explore.dart';
+import 'package:booky/search_in_notes.dart';
+import 'package:booky/search_in_wishlist.dart';
+import 'package:booky/search_in_books.dart';
 import 'package:booky/settings.dart';
 import 'package:booky/user_profile.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,7 @@ import 'package:booky/app_theme.dart';
 import 'explore.dart';
 import 'dashboard_challenges.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
 
 void main() {
   runApp(BookyApp());
@@ -56,6 +60,8 @@ class BookyAppHome extends StatefulWidget {
 
 class _BookyAppHomeState extends State<BookyAppHome>
     with TickerProviderStateMixin {
+  final DataManager manager = DataManager();
+  TextEditingController textController = TextEditingController();
   int _selectedIconIndex = 0;
   int _currentMyLibIndex = 0;
 
@@ -265,19 +271,33 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         title: const Text('My Library'),
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Color(0xFF58595B),
+          if (_currentMyLibIndex == 0)
+            AnimSearchBar(
+              textFieldColor: const Color(0xFFDCE2EB),
+              textFieldIconColor: const Color(0xFF141D29),
+              searchIconColor: const Color(0xFF58595B),
+              color: Colors.transparent,
+              boxShadow: false,
+              width: MediaQuery.of(context).size.width / 1.5,
+              textController: textController,
+              closeSearchOnSuffixTap: false,
+              onSuffixTap: () {
+                setState(() {
+                  textController.clear();
+                });
+              },
+              onSubmitted: (String value) {
+                setState(() {
+                  final dataManager =
+                  Provider.of<DataManager>(context, listen: false);
+                  var searchResults = dataManager.searchBook(value, manager.myBooks);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  SearchInBooks(searchList: searchResults, searchString: value,)));
+                });
+              },
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const SearchBookInLibrary()),
-              );
-            },
-          ),
           if (_currentMyLibIndex == 0)
             PopupMenuButton(
               icon: const Icon(
@@ -328,6 +348,33 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   context,
                   MaterialPageRoute(builder: (context) => const AddNewShelf()),
                 );
+              },
+            ),
+          if (_currentMyLibIndex == 2)
+            AnimSearchBar(
+              textFieldColor: const Color(0xFFDCE2EB),
+              textFieldIconColor: const Color(0xFF141D29),
+              searchIconColor: const Color(0xFF58595B),
+              color: Colors.transparent,
+              boxShadow: false,
+              width: MediaQuery.of(context).size.width / 1.5,
+              textController: textController,
+              closeSearchOnSuffixTap: false,
+              onSuffixTap: () {
+                setState(() {
+                  textController.clear();
+                });
+              },
+              onSubmitted: (String value) {
+                setState(() {
+                  final dataManager =
+                  Provider.of<DataManager>(context, listen: false);
+                  var searchResults = dataManager.searchBook(value, manager.myWishlist);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  SearchInWishlist(searchList: searchResults, searchString: value,)));
+                });
               },
             ),
         ],
@@ -381,6 +428,17 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   minHeight: 30,
                   maxWidth: (MediaQuery.of(context).size.width) / 1.2),
               hintText: "Search by keyword or ISBN",
+              onSubmitted: (String value) {
+                setState(() {
+                  final dataManager =
+                  Provider.of<DataManager>(context, listen: false);
+                  var searchResults = dataManager.searchBook(value, manager.allBooks);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  SearchInExplore(searchList: searchResults, searchString: value,)));
+                });
+              },
             ),
           ),
         ),
@@ -426,12 +484,31 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         title: const Text('Notes'),
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Color(0xFF58595B),
-            ),
-            onPressed: () {},
+          AnimSearchBar(
+            textFieldColor: const Color(0xFFDCE2EB),
+            textFieldIconColor: const Color(0xFF141D29),
+            searchIconColor: const Color(0xFF58595B),
+            color: Colors.transparent,
+            boxShadow: false,
+            width: MediaQuery.of(context).size.width / 1.5,
+            textController: textController,
+            closeSearchOnSuffixTap: false,
+            onSuffixTap: () {
+              setState(() {
+                textController.clear();
+              });
+            },
+            onSubmitted: (String value) {
+              setState(() {
+                final dataManager =
+                Provider.of<DataManager>(context, listen: false);
+                var searchResults = dataManager.searchBook(value, manager.myBooks);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  SearchInNotes(searchList: searchResults, searchString: value,)));
+              });
+            },
           ),
         ],
         leading: Builder(
@@ -476,4 +553,6 @@ class _BookyAppHomeState extends State<BookyAppHome>
         return buildDefaultAppBar();
     }
   }
+
+
 }

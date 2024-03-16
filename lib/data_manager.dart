@@ -35,6 +35,7 @@ class DataManager extends ChangeNotifier {
 
   List<Shelf> get myShelves => List.from(_myShelves);
 
+
   List<StandardChallenge> get allStandardChallenges =>
       List.from(_standardChallenges);
 
@@ -95,6 +96,17 @@ class DataManager extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<Book> searchResults = [];
+  List<Book> searchBook(String value, List<Book> books) {
+    String lowercaseValue = value.toLowerCase();
+
+    searchResults = books.where((book) => book.name.toLowerCase().contains(lowercaseValue)).toList();
+    notifyListeners();
+
+    return searchResults;
+  }
+
 
   void updateMyBooksList(Book book, bool action) {
     if (action == false) {
