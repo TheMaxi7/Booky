@@ -1,29 +1,31 @@
-import 'package:booky/book_info.dart';
-import 'package:booky/shelf.dart';
+import 'package:booky/book.dart';
+import 'package:booky/explore_book_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'data_manager.dart';
 
-class ShelfInfo extends StatefulWidget {
-  const ShelfInfo({Key? key, required this.shelf}) : super(key: key);
+class CategoryBooksGrid extends StatefulWidget {
+  const CategoryBooksGrid({Key? key, required this.genre}) : super(key: key);
 
-  final Shelf shelf;
+  final String genre;
 
   @override
-  State<ShelfInfo> createState() => _ShelfInfoState();
+  State<CategoryBooksGrid> createState() => _CategoryBooksGridState();
 }
 
-class _ShelfInfoState extends State<ShelfInfo> {
+class _CategoryBooksGridState extends State<CategoryBooksGrid> {
+  final DataManager dataManager = DataManager();
+  late List<Book> booksInCategory;
   @override
   Widget build(BuildContext context) {
+    booksInCategory = dataManager.findBooksOfGenre(widget.genre);
     return Consumer<DataManager>(
       builder: (context, manager, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: const Color(0xFFDCE2EB),
             title: Text(
-              widget.shelf.name,
+              "Category: ${widget.genre}",
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -35,14 +37,14 @@ class _ShelfInfoState extends State<ShelfInfo> {
                     crossAxisCount: 3,
                     childAspectRatio: 1 / 1.40,
                   ),
-                  itemCount: widget.shelf.books.length,
+                  itemCount: booksInCategory.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BookInfo(book:widget.shelf.books[index])));
+                                builder: (context) => ExploreBookInfo(book:booksInCategory[index])));
 
                       },
                       child: Padding(
@@ -61,7 +63,7 @@ class _ShelfInfoState extends State<ShelfInfo> {
                             image: DecorationImage(
                               fit: BoxFit.fill,
                               image:
-                                  AssetImage(widget.shelf.books[index].cover),
+                              AssetImage(booksInCategory[index].cover),
                             ),
                           ),
                         ),

@@ -180,6 +180,27 @@ class DataManager extends ChangeNotifier {
     return searchResults;
   }
 
+  List<String> genres = [];
+  List<String> findAllGenres() {
+    genres.clear();
+    for (var book in allBooks){
+      if (!genres.contains(book.genre)){
+        genres.add(book.genre);
+      }
+    }
+    return genres;
+  }
+
+  List<Book> booksOfGenre = [];
+  List<Book> findBooksOfGenre(String genre) {
+    booksOfGenre.clear();
+    for (var book in allBooks){
+      if (book.genre == genre){
+        booksOfGenre.add(book);
+      }
+    }
+    return booksOfGenre;
+  }
 
   void updateMyBooksList(Book book, bool action) {
     if (action == false) {

@@ -1,4 +1,5 @@
 import 'package:booky/book.dart';
+import 'package:booky/set_price_alert.dart';
 import 'package:booky/shelves_list.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_text/expandable_text.dart';
@@ -46,7 +47,12 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
               Icons.add_alert_rounded,
               color: Color(0xFF58595B),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SetPriceAlert()),
+              );
+            },
           ),
           IconButton(
             icon: Icon(

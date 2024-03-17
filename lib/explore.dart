@@ -1,3 +1,4 @@
+import 'package:booky/category_books.dart';
 import 'package:booky/explore_book_card.dart';
 import 'package:booky/explore_book_info.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,12 @@ class Explore extends StatefulWidget {
 }
 
 class _ExploreState extends State<Explore> {
-
+  final DataManager dataManager = DataManager();
   @override
   Widget build(BuildContext context) {
     return Consumer<DataManager>(
       builder: (context, manager, child) {
+        manager.findAllGenres();
         return ListView(
           children: [
             Padding(
@@ -28,14 +30,14 @@ class _ExploreState extends State<Explore> {
                 children: [
                   Center(
                     child: Material(
-                      elevation: 2, // Set the desired elevation here
+                      elevation: 2,
                       borderRadius: BorderRadius.circular(40),
                       surfaceTintColor: const Color(0xFFDCE2EB),
                       color: const Color(0xFFDCE2EB),
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xFF58595B)),
+                          border: Border.all(color: const Color(0xFF58595B)),
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: DropdownButtonHideUnderline(
@@ -43,24 +45,24 @@ class _ExploreState extends State<Explore> {
                             dropdownColor: const Color(0xFFDCE2EB),
                             icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF58595B)),
                             hint: const Text("All categories", style: TextStyle(color: Color(0xFF58595B))),
-                            items: const [
-                              DropdownMenuItem(
-                                value: "Fantasy",
-                                child: Text("Fantasy", style: TextStyle(color: Color(0xFF58595B))),
-                              ),
-                              DropdownMenuItem(
-                                value: "Self Help",
-                                child: Text("Self Help", style: TextStyle(color: Color(0xFF58595B))),
-                              ),
-                              // Add more DropdownMenuItems as needed
-                            ],
-                            onChanged: (value) {
-                              // Handle dropdown item selection
+                            items: manager.genres.map<DropdownMenuItem<String>>((String genre) {
+                              return DropdownMenuItem<String>(
+                                value: genre,
+                                child: Text(genre, style: const TextStyle(color: Color(0xFF58595B))),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              if (value != null) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => CategoryBooksGrid(genre: value)),
+                                );
+                              }
                             },
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ),
                   Text("Bestsellers",
                       style: Theme.of(context).textTheme.headlineSmall),
