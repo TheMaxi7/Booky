@@ -59,7 +59,6 @@ class _EditNoteState extends State<EditNote> {
                 ),
                 TextField(
                   controller: nameController,
-                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelStyle: Theme.of(context).textTheme.titleMedium,
                     hintStyle: Theme.of(context).textTheme.bodyMedium,

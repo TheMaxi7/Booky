@@ -46,7 +46,7 @@ class _BookNotesState extends State<BookNotes> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      note.name,
+                      note.name.isNotEmpty ? note.name : "Quote ${note.index}:",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     IconButton(

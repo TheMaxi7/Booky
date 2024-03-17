@@ -60,7 +60,6 @@ class _EditQuoteState extends State<EditQuote> {
                   ),
                   TextField(
                     controller: nameController,
-                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelStyle: Theme.of(context).textTheme.titleMedium,
                       hintStyle: Theme.of(context).textTheme.bodyMedium,

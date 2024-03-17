@@ -4,6 +4,7 @@ import 'package:booky/notes_book_card.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -77,7 +78,7 @@ class _MyBookCardState extends State<MyBookCard> {
                               child: Text(
                                 widget.book.name,
                                 style:
-                                    Theme.of(context).textTheme.headlineMedium,
+                                    GoogleFonts.exo(),
                               ),
                             ),
                           ),

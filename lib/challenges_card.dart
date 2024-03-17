@@ -1,4 +1,5 @@
 import 'package:booky/challenges.dart';
+import 'package:booky/data_manager.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeCard extends StatefulWidget {
@@ -11,6 +12,7 @@ class ChallengeCard extends StatefulWidget {
 }
 
 class _ChallengeCardState extends State<ChallengeCard> {
+  final DataManager manager = DataManager();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -60,6 +62,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                 surfaceTintColor: const Color(0xFFDCE2EB),
                 child: Icon(
                   widget.challenge.trophy,
+                  color: manager.myAchievements.contains(widget.challenge) ? const Color(0xFFFF4713) : const Color(0xFF141D29),
                   size: (MediaQuery.of(context).size.width/8),
                 ),
               ),

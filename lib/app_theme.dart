@@ -2,30 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class BookyTheme {
   static TextTheme normalTextTheme = TextTheme(
-      headlineSmall: GoogleFonts.exo(
-      fontSize: 16,
-      fontWeight: FontWeight.normal,
-      color: const Color(0xFF141D29)
-      ),
-      headlineMedium: GoogleFonts.exo(
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFF141D29)
-      ),
-      bodyMedium: GoogleFonts.exo(
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
-          color: const Color(0xFF58595B)
-      ),
-      bodySmall: GoogleFonts.exo(
-      fontSize: 8,
-      fontWeight: FontWeight.normal,
-      color: const Color(0xFF141D29)
-  )
+
+    headlineSmall: GoogleFonts.exo(
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        color: Colors.black
+    ),
+    titleLarge: GoogleFonts.exo(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+        color: Colors.black
+    ),
+    titleMedium: GoogleFonts.exo(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.15,
+        color: Colors.black
+    ),
+    titleSmall: GoogleFonts.exo(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.1,
+        color: Colors.black
+    ),
+    bodyLarge: GoogleFonts.exo(
+        fontSize: 17,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.5,
+        color: Colors.black
+    ),
+    bodyMedium: GoogleFonts.exo(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.25,
+        color: Colors.black
+    ),
+    labelLarge: GoogleFonts.exo(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25,
+        color: Colors.black
+    ),
   );
 
   static ThemeData normal(){
     return ThemeData(
+      fontFamily: GoogleFonts.exo().fontFamily,
       useMaterial3: true,
       textTheme: normalTextTheme,
       colorScheme: ColorScheme.fromSwatch(

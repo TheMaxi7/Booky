@@ -46,7 +46,7 @@ class _BookQuotesState extends State<BookQuotes> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      quote.name,
+                      quote.name.isNotEmpty ? quote.name : "Quote ${quote.index}:",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     IconButton(
