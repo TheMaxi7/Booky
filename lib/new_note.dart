@@ -7,6 +7,7 @@ import 'package:text_area/text_area.dart';
 class NewNote extends StatefulWidget {
   const NewNote({Key? key, required this.book}) : super(key: key);
   final Book book;
+
   @override
   State<NewNote> createState() => _NewNoteState();
 }
@@ -85,28 +86,31 @@ class _NewNoteState extends State<NewNote> {
               onSuffixIconPressed: () => {},
               validation: true,
             ),
-            TextField(
-              controller: pageController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF141D29)),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, right: 8),
+              child: TextField(
+                controller: pageController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelStyle: Theme.of(context).textTheme.titleMedium,
+                  hintStyle: Theme.of(context).textTheme.bodyMedium,
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF141D29)),
+                  ),
+                  labelText: 'Page',
+                  hintText: 'Enter page number',
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF58595B)),
+                  ),
                 ),
-                labelText: 'Page',
-                hintText: 'Enter page number',
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF58595B)),
-                ),
+                onChanged: (value) {
+                  setState(() {
+                    if (value.isEmpty) {
+                      pageController.text = '';
+                    }
+                  });
+                },
               ),
-              onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    pageController.text = '';
-                  }
-                });
-              },
             ),
             SizedBox(
               width: ((MediaQuery.of(context).size.width) / 1.5),
@@ -115,9 +119,9 @@ class _NewNoteState extends State<NewNote> {
                   setState(() {
                     var pageNumber = int.tryParse(pageController.text);
                     final dataManager =
-                    Provider.of<DataManager>(context, listen: false);
-                    dataManager.addNewNote(widget.book,
-                        titleController.text, noteController.text, pageNumber!);
+                        Provider.of<DataManager>(context, listen: false);
+                    dataManager.addNewNote(widget.book, titleController.text,
+                        noteController.text, pageNumber!);
                     Navigator.pop(context);
                   });
                 },

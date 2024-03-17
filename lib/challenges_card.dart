@@ -29,6 +29,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       backgroundColor: const Color(0xFFDCE2EB),
+                      surfaceTintColor: Colors.transparent,
                       title: Text(
                         widget.challenge.name,
                         textAlign: TextAlign.center,

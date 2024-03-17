@@ -18,6 +18,8 @@ class DataManager extends ChangeNotifier {
   final List<Shelf> _myShelves = SampleData.myShelves;
   final List<StandardChallenge> _standardChallenges =
       SampleData.allStandardChallenges;
+  final List<Challenge> _myAchievements =
+      SampleData.myAchievements;
 
   List<Book> get allBooks => List.unmodifiable(_allBooks);
 
@@ -32,6 +34,7 @@ class DataManager extends ChangeNotifier {
   List<Book> get myWishlist => List.from(_myWishlist);
 
   List<Challenge> get allChallenges => List.from(_challenges);
+  List<Challenge> get myAchievements => List.from(_myAchievements);
 
   List<Shelf> get myShelves => List.from(_myShelves);
 
@@ -152,6 +155,19 @@ class DataManager extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<Book> myTopRatedBooks = [];
+
+  List<Book> findMyTopRatedBooks() {
+    myTopRatedBooks.clear();
+    _myBooks.sort((a, b) => b.myRating.compareTo(a.myRating));
+    myTopRatedBooks.addAll(_myBooks.take(5));
+    notifyListeners();
+
+    return myTopRatedBooks;
+  }
+
+
 
   List<Book> searchResults = [];
   List<Book> searchBook(String value, List<Book> books) {
@@ -296,5 +312,8 @@ class DataManager extends ChangeNotifier {
   void deleteQuote(List<Quote> quotes, Quote quote){
     quotes.remove(quote);
     notifyListeners();
+  }
+
+  void deleteAllData() {
   }
 }

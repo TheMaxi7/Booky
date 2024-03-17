@@ -543,5 +543,11 @@ class SampleData {
     myFavouriteBooks,
   ];
 
+  static List<Challenge> myAchievements =[
+    challenge8,
+    challenge6,
+    challenge5,
+  ];
+
 }
 

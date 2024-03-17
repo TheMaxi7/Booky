@@ -60,8 +60,8 @@ class _AddBookManuallyState extends State<AddBookManually> {
               width: (MediaQuery.of(context).size.width) / 2.1,
               height: (MediaQuery.of(context).size.width) /
                   2.1 *
-                  1.51, // Set the height you desire
-              color: Colors.grey, // You can set any color or decoration here
+                  1.51,
+              color: Colors.grey,
               child: const Center(
                 child: Text(
                   'Upload Picture',
