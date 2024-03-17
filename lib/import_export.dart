@@ -24,7 +24,7 @@ class _ImportExportState extends State<ImportExport> {
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         ListTile(
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
-          title: const Text("Import"),
+          title:  Text("Import", style: Theme.of(context).textTheme.titleMedium,),
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Import()));
@@ -32,7 +32,7 @@ class _ImportExportState extends State<ImportExport> {
         ),
         ListTile(
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
-          title: const Text("Export"),
+          title:  Text("Export", style: Theme.of(context).textTheme.titleMedium,),
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Export()));

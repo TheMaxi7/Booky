@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'data_manager.dart';
 
 class DashboardChallengesTab extends StatefulWidget {
-  const DashboardChallengesTab({Key? key}) : super(key: key);
+  const DashboardChallengesTab({super.key});
 
   @override
   State<DashboardChallengesTab> createState() => _DashboardChallengesTabState();
@@ -25,7 +25,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Monthly Challenge"),
+                     Text("Monthly Challenge", style: Theme.of(context).textTheme.titleLarge,),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -37,7 +37,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       },
                       child: Text(
                         "edit",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -62,6 +62,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       child: Text(
                         "${((manager.allStandardChallenges[0].progress / manager.allStandardChallenges[0].booksToRead) * 100).toInt()}%",
                         textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -73,7 +74,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                     children: [
                       const Icon(Icons.book),
                       Text(
-                          '${manager.allStandardChallenges[0].progress} / ${manager.allStandardChallenges[0].booksToRead}')
+                          '${manager.allStandardChallenges[0].progress} / ${manager.allStandardChallenges[0].booksToRead}', style: Theme.of(context).textTheme.bodyLarge,)
                     ],
                   )),
               Padding(
@@ -85,7 +86,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Yearly Challenge"),
+                     Text("Yearly Challenge", style: Theme.of(context).textTheme.titleLarge,),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -97,7 +98,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       },
                       child: Text(
                         "edit",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -122,6 +123,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       child: Text(
                         "${((manager.allStandardChallenges[1].progress / manager.allStandardChallenges[1].booksToRead) * 100).toInt()}%",
                         textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -133,7 +135,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                     children: [
                       const Icon(Icons.book),
                       Text(
-                          '${manager.allStandardChallenges[1].progress} / ${manager.allStandardChallenges[1].booksToRead}')
+                          '${manager.allStandardChallenges[1].progress} / ${manager.allStandardChallenges[1].booksToRead}', style: Theme.of(context).textTheme.bodyLarge,)
                     ],
                   )),
               const Divider(

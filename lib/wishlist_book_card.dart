@@ -4,7 +4,7 @@ import 'package:booky/book.dart';
 import 'package:share_plus/share_plus.dart';
 
 class WishlistBookCard extends StatefulWidget {
-  const WishlistBookCard({Key? key, required this.book}) : super(key: key);
+  const WishlistBookCard({super.key, required this.book});
 
   final Book book;
 
@@ -65,7 +65,9 @@ class _WishlistBookCardState extends State<WishlistBookCard> {
                         padding: const EdgeInsets.only(top: 8, bottom: 4),
                         child: Text(
                           widget.book.name,
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                     ),
@@ -79,14 +81,17 @@ class _WishlistBookCardState extends State<WishlistBookCard> {
                 ),
                 Text(
                   widget.book.author,
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                 ),
                 Text(
                   'Genre: ${widget.book.genre}',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.normal),
                 ),
                 Text(
                   'Pages: ${widget.book.pages.toString()}',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.normal),
                 ),
               ],
             ),

@@ -9,7 +9,7 @@ import 'package:booky/book.dart';
 import 'package:share_plus/share_plus.dart';
 
 class NotesBookCard extends StatefulWidget {
-  const NotesBookCard({Key? key, required this.book}) : super(key: key);
+  const NotesBookCard({super.key, required this.book});
 
   final Book book;
 
@@ -74,14 +74,13 @@ class _NotesBookCardState extends State<NotesBookCard> {
                         children: [
                           Text(
                             "Pinned quote",
-                            style:
-                            Theme.of(context).textTheme.headlineMedium,
+                            style: Theme.of(context).textTheme.titleLarge
                           ),
                           ExpandableText(
                             "\"${findPinnedQuote(widget.book)}\"",
                             style: Theme.of(context)
                                 .textTheme
-                                .headlineSmall
+                                .bodyLarge
                                 ?.copyWith(fontStyle: FontStyle.italic),
                             expandText: 'show more',
                             collapseText: 'show less',
@@ -89,14 +88,13 @@ class _NotesBookCardState extends State<NotesBookCard> {
                           ),
                           Text(
                             "Pinned note",
-                            style:
-                            Theme.of(context).textTheme.headlineMedium,
+                              style: Theme.of(context).textTheme.titleLarge
                           ),
                           ExpandableText(
                             "\"${findPinnedNote(widget.book)}\"",
                             style: Theme.of(context)
                                 .textTheme
-                                .headlineSmall
+                                .bodyLarge
                                 ?.copyWith(fontStyle: FontStyle.italic),
                             expandText: 'show more',
                             collapseText: 'show less',
@@ -113,7 +111,6 @@ class _NotesBookCardState extends State<NotesBookCard> {
                       PopupMenuButton(
                         icon: const Icon(
                           Icons.share,
-                          color: Color(0xFF141D29),
                         ),
                         itemBuilder: (context) => [
                           const PopupMenuItem(
@@ -136,7 +133,6 @@ class _NotesBookCardState extends State<NotesBookCard> {
                       PopupMenuButton(
                         icon: const Icon(
                           Icons.add,
-                          color: Color(0xFF141D29),
                         ),
                         itemBuilder: (context) => [
                           const PopupMenuItem(

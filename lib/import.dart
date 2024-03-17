@@ -57,8 +57,8 @@ class _ImportState extends State<Import> {
               child: Text(
                 'Import',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: const Color(0xFFDCE2EB),
-                    ),
+                    color: const Color(0xFFDCE2EB), fontWeight: FontWeight.w700
+                ),
               ),
             ),
           ),

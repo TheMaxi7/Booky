@@ -81,7 +81,7 @@ class _UserProfileState extends State<UserProfile> {
             padding: const EdgeInsets.only(left: 8, bottom: 8),
             child: Text(
               "Top 5 Rated books",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
 

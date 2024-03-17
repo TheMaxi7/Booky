@@ -35,10 +35,12 @@ class _ChallengeCardState extends State<ChallengeCard> {
                       title: Text(
                         widget.challenge.name,
                         textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       content: Text(
                         widget.challenge.info,
                         textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal, color: const Color(0xFF58595B)),
                       ),
                       actions: <Widget>[
                         TextButton(
@@ -48,7 +50,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
                           child:  Text(
                             'Close',
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ),
                       ],
@@ -69,7 +71,7 @@ class _ChallengeCardState extends State<ChallengeCard> {
             ),
             Text(
               widget.challenge.name,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
           ],

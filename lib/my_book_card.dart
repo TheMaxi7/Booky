@@ -4,12 +4,11 @@ import 'package:booky/notes_book_card.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:booky/book.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyBookCard extends StatefulWidget {
-  const MyBookCard({Key? key, required this.book}) : super(key: key);
+  const MyBookCard({super.key, required this.book});
 
   final Book book;
 
@@ -77,13 +76,14 @@ class _MyBookCardState extends State<MyBookCard> {
                               padding: const EdgeInsets.only(top: 8, bottom: 4),
                               child: Text(
                                 widget.book.name,
-                                style:
-                                    GoogleFonts.exo(),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.share),
+                            icon: const Icon(Icons.share,),
                             onPressed: (){
                             Share.share('check out this book: ${widget.book.infoUrl}\n\nSent by Booky');},
                           ),
@@ -91,11 +91,13 @@ class _MyBookCardState extends State<MyBookCard> {
                       ),
                       Text(
                         widget.book.author,
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                       ),
                       Text(
                         'Shelf: ${findShelf(widget.book)}',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.normal),
                       ),
                       Row(
                         children: [
@@ -139,7 +141,7 @@ class _MyBookCardState extends State<MyBookCard> {
                                 ((widget.book.pagesRead / widget.book.pages) * 100).toInt() != 100
                                     ? '${((widget.book.pagesRead / widget.book.pages) * 100).toInt()}%'
                                     : 'Finished',
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                           ),
@@ -149,7 +151,7 @@ class _MyBookCardState extends State<MyBookCard> {
                         width: (MediaQuery.of(context).size.width) / 2,
                         child: ExpandableText(
                           '"${findPinnedQuote(widget.book)}"',
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic),
                           expandText: 'show more',
                           collapseText: 'show less',
                           maxLines: 2,

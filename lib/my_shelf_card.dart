@@ -35,15 +35,12 @@ class _ShelfCardState extends State<ShelfCard> {
                     children: [
                       Text(
                         widget.shelf.name,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       IconButton(
                         icon: Icon(
                           isExpanded ? Icons.expand_less : Icons.expand_more,
-                          color: Colors.black,
+                          color: const Color(0xFF58595B),
                         ),
                         onPressed: () {
                           setState(() {

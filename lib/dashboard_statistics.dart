@@ -7,7 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class DashboardStatisticsTab extends StatefulWidget {
-  const DashboardStatisticsTab({Key? key}) : super(key: key);
+  const DashboardStatisticsTab({super.key});
 
   @override
   State<DashboardStatisticsTab> createState() =>
@@ -31,7 +31,7 @@ class _DashboardStatisticsTabTabState extends State<DashboardStatisticsTab> {
                 children: [
                   Text(
                     "Average Rating",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleLarge
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -67,7 +67,7 @@ class _DashboardStatisticsTabTabState extends State<DashboardStatisticsTab> {
                   ),
                   Text(
                     "Genres",
-                    style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleLarge
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -75,7 +75,7 @@ class _DashboardStatisticsTabTabState extends State<DashboardStatisticsTab> {
                   ),
                   Text(
                     "Reading stats",
-                    style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleLarge
                   ),
                   SfCartesianChart(
                       primaryYAxis: const NumericAxis(

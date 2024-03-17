@@ -49,7 +49,7 @@ class _MyLibraryBooksState extends State<MyLibraryBooks> {
                         color: Color(0xFF58595B),
                       ),
                       label: Text('Filter',
-                          style: Theme.of(context).textTheme.bodySmall),
+                          style: Theme.of(context).textTheme.bodyMedium),
                     ),
                     OutlinedButton.icon(
                       onPressed: () {
@@ -70,7 +70,7 @@ class _MyLibraryBooksState extends State<MyLibraryBooks> {
                       icon: const Icon(Icons.sort, color: Color(0xFF58595B)),
                       label: Text(
                         _sortAscending ? 'Sort A-Z' : 'Sort Z-A',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
                   ],

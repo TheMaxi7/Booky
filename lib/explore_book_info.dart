@@ -43,7 +43,8 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
               color: Color(0xFF58595B),
             ),
             onPressed: () {
-              Share.share('Check out this book: ${widget.book.infoUrl}\n\nSent by Booky');
+              Share.share(
+                  'Check out this book: ${widget.book.infoUrl}\n\nSent by Booky');
             },
           ),
           IconButton(
@@ -130,7 +131,9 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.author,
-                                style: Theme.of(context).textTheme.titleSmall,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Padding(
@@ -154,35 +157,47 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                             ),
                             Text(
                               'Genre',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.genre,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Text(
                               'Publish date',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.publishDate,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Text(
                               'Pages',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.pages.toString(),
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal, color: const Color(0xFF58595B)),
                               ),
                             ),
                           ],
@@ -195,21 +210,21 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     'ISBN',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     widget.book.isbn.toString(),
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     'Book description:',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                   ),
                 ),
                 Padding(
@@ -219,6 +234,7 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                     expandText: 'show more',
                     collapseText: 'show less',
                     maxLines: 2,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               ],
@@ -246,7 +262,7 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                     child: Text(
                       'Add to shelf',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xFFDCE2EB),
+                            color: const Color(0xFFDCE2EB), fontWeight: FontWeight.w700
                           ),
                     ),
                   ),
@@ -256,13 +272,13 @@ class _ExploreBookInfoState extends State<ExploreBookInfo> {
                   child: OutlinedButton(
                     onPressed: _launchUrl,
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFF58595B)),
+                      side: const BorderSide(color: Color(0xFF58595B), width: 2,),
                       backgroundColor: const Color(0xFFDCE2EB),
                     ),
                     child: Text(
                       'Buy',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xFF141d29),
+                            color: const Color(0xFF141d29), fontWeight: FontWeight.w700
                           ),
                     ),
                   ),

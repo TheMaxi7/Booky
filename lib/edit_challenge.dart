@@ -1,13 +1,11 @@
-import 'package:booky/book.dart';
+
 import 'package:booky/data_manager.dart';
-import 'package:booky/shelf.dart';
 import 'package:booky/standard_challenges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class EditChallenge extends StatefulWidget {
-  const EditChallenge({Key? key, required this.challenge}) : super(key: key);
+  const EditChallenge({super.key, required this.challenge});
 
   final StandardChallenge challenge;
 
@@ -137,10 +135,9 @@ class _EditChallengeState extends State<EditChallenge> {
                     backgroundColor: const Color(0xFF141D29)),
                 child: Text(
                   'Save',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: const Color(0xFFDCE2EB)),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFFDCE2EB), fontWeight: FontWeight.w700
+                  ),
                 ),
               ),
             ),

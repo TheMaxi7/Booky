@@ -24,7 +24,7 @@ class _SettingsState extends State<Settings> {
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
-            title: const Text("Language"),
+            title: Text("Language", style: Theme.of(context).textTheme.titleMedium,),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LanguagesList()));
@@ -32,7 +32,7 @@ class _SettingsState extends State<Settings> {
           ),
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
-            title: const Text("Delete data"),
+            title: Text("Delete data", style: Theme.of(context).textTheme.titleMedium,),
             onTap: () {
               _showDeleteDataConfirmationDialog();
             },
@@ -49,11 +49,11 @@ class _SettingsState extends State<Settings> {
         return AlertDialog(
           backgroundColor: const Color(0xFFDCE2EB),
           surfaceTintColor: Colors.transparent,
-          title: const Text('Confirm Delete'),
-          content: const SingleChildScrollView(
+          title: Text('Confirm Delete',style: Theme.of(context).textTheme.titleLarge,),
+          content:  SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Are you sure you want to delete all your data?'),
+                Text('Are you sure you want to delete all your data?',style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal, color: const Color(0xFF58595B),),)
               ],
             ),
           ),
@@ -62,14 +62,14 @@ class _SettingsState extends State<Settings> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child:  Text('No',style: Theme.of(context).textTheme.bodyMedium,),
+              child:  Text('No',style: Theme.of(context).textTheme.bodyLarge,),
             ),
             TextButton(
               onPressed: () {
                 manager.deleteAllData();
                 Navigator.of(context).pop();
               },
-              child:  Text('Yes',style: Theme.of(context).textTheme.bodyMedium,),
+              child:  Text('Yes',style: Theme.of(context).textTheme.bodyLarge,),
             ),
           ],
         );

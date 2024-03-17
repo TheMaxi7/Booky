@@ -2,11 +2,10 @@ import 'package:booky/book_info.dart';
 import 'package:booky/shelf.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'data_manager.dart';
 
 class ShelfInfo extends StatefulWidget {
-  const ShelfInfo({Key? key, required this.shelf}) : super(key: key);
+  const ShelfInfo({super.key, required this.shelf});
 
   final Shelf shelf;
 

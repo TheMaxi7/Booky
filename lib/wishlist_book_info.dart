@@ -117,16 +117,18 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                               padding: const EdgeInsets.only(top: 8, bottom: 4),
                               child: Text(
                                 widget.book.name,
-                                style: Theme.of(context).textTheme.titleLarge,
-                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.author,
-                                style: Theme.of(context).textTheme.titleSmall,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Padding(
@@ -150,35 +152,47 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                             ),
                             Text(
                               'Genre',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.genre,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Text(
                               'Publish date',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.publishDate,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
                               ),
                             ),
                             Text(
                               'Pages',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: Text(
                                 widget.book.pages.toString(),
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal, color: Color(0xFF58595B)),
                               ),
                             ),
                           ],
@@ -191,21 +205,21 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     'ISBN',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     widget.book.isbn.toString(),
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                   child: Text(
                     'Book description:',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
                   ),
                 ),
                 Padding(
@@ -215,6 +229,7 @@ class _WishlistBookInfoState extends State<WishlistBookInfo> {
                     expandText: 'show more',
                     collapseText: 'show less',
                     maxLines: 2,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               ],

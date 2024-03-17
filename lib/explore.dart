@@ -42,13 +42,13 @@ class _ExploreState extends State<Explore> {
                         ),
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
-                            dropdownColor: const Color(0xFFDCE2EB),
+                            dropdownColor:  const Color(0xFFDCE2EB),
                             icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF58595B)),
-                            hint: const Text("All categories", style: TextStyle(color: Color(0xFF58595B))),
+                            hint: Text("All categories", style: Theme.of(context).textTheme.bodyMedium,),
                             items: manager.genres.map<DropdownMenuItem<String>>((String genre) {
                               return DropdownMenuItem<String>(
                                 value: genre,
-                                child: Text(genre, style: const TextStyle(color: Color(0xFF58595B))),
+                                child: Text(genre, style: Theme.of(context).textTheme.bodyLarge,),
                               );
                             }).toList(),
                             onChanged: (String? value) {
@@ -65,7 +65,7 @@ class _ExploreState extends State<Explore> {
                     ),
                   ),
                   Text("Bestsellers",
-                      style: Theme.of(context).textTheme.headlineSmall),
+                      style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: (MediaQuery.of(context).size.width)/3*1.8,
@@ -106,7 +106,7 @@ class _ExploreState extends State<Explore> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("New releases",
-                      style: Theme.of(context).textTheme.headlineSmall),
+                      style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: (MediaQuery.of(context).size.width)/3*1.8,
@@ -147,7 +147,7 @@ class _ExploreState extends State<Explore> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("For you",
-                      style: Theme.of(context).textTheme.headlineSmall),
+                      style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: (MediaQuery.of(context).size.width)/3*1.8,
