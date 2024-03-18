@@ -1,33 +1,34 @@
-import 'package:booky/add_book_manually.dart';
-import 'package:booky/add_new_shelf.dart';
-import 'package:booky/book.dart';
-import 'package:booky/contact_us.dart';
-import 'package:booky/dashboard_statistics.dart';
-import 'package:booky/data_manager.dart';
-import 'package:booky/faqs.dart';
-import 'package:booky/import_export.dart';
-import 'package:booky/my_library_shelves.dart';
-import 'package:booky/my_library_wishlist.dart';
-import 'package:booky/notes.dart';
-import 'package:booky/search_book_in_library_screen.dart';
-import 'package:booky/search_in_explore.dart';
-import 'package:booky/search_in_notes.dart';
-import 'package:booky/search_in_wishlist.dart';
-import 'package:booky/search_in_books.dart';
-import 'package:booky/settings.dart';
-import 'package:booky/user_profile.dart';
+import 'package:booky/my_library/add_book_manually.dart';
+import 'package:booky/my_library/add_new_shelf.dart';
+import 'package:booky/lateral_drawer/contact_us.dart';
+import 'package:booky/dashboard/dashboard_statistics.dart';
+import 'package:booky/data_and_classes/data_manager.dart';
+import 'package:booky/lateral_drawer/faqs.dart';
+import 'package:booky/lateral_drawer/import_export.dart';
+import 'package:booky/my_library/my_library_shelves.dart';
+import 'package:booky/my_library/my_library_wishlist.dart';
+import 'package:booky/notes/notes.dart';
+import 'package:booky/explore/search_in_explore.dart';
+import 'package:booky/notes/search_in_notes.dart';
+import 'package:booky/my_library/search_in_wishlist.dart';
+import 'package:booky/my_library/search_in_books.dart';
+import 'package:booky/lateral_drawer/settings.dart';
+import 'package:booky/lateral_drawer/user_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'my_library_books.dart';
+import 'my_library/my_library_books.dart';
 import 'package:booky/app_theme.dart';
-import 'explore.dart';
-import 'dashboard_challenges.dart';
+import 'explore/explore.dart';
+import 'dashboard/dashboard_challenges.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import 'package:anim_search_bar/anim_search_bar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Color(0xFF141D29),
+  ));
   runApp(BookyApp());
 }
 
@@ -134,7 +135,7 @@ class _BookyAppHomeState extends State<BookyAppHome>
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                          const UserProfile()));
+                                              const UserProfile()));
                                 },
                                 child: Text(
                                   "View Profile",
@@ -151,7 +152,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   ListTile(
                     leading: const Icon(Icons.settings),
                     trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                    title: Text("Settings", style: Theme.of(context).textTheme.titleMedium,),
+                    title: Text(
+                      "Settings",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -162,7 +166,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   ListTile(
                     leading: const Icon(Icons.import_export),
                     trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                    title:  Text("Import/Export", style: Theme.of(context).textTheme.titleMedium,),
+                    title: Text(
+                      "Import/Export",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -173,7 +180,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   ListTile(
                     leading: const Icon(Icons.message),
                     trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                    title:  Text("Contact Us", style: Theme.of(context).textTheme.titleMedium,),
+                    title: Text(
+                      "Contact Us",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -184,7 +194,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
                   ListTile(
                     leading: const Icon(Icons.question_mark),
                     trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                    title:  Text("FAQs", style: Theme.of(context).textTheme.titleMedium,),
+                    title: Text(
+                      "FAQs",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -276,11 +289,18 @@ class _BookyAppHomeState extends State<BookyAppHome>
             bottom: Radius.circular(10),
           ),
         ),
-        title:  Text('My Library',style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(
+          'My Library',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         actions: [
           if (_currentMyLibIndex == 0)
             AnimSearchBar(
-              prefixIcon: const Icon(Icons.search, size: 26, color: const Color(0xFF58595B),),
+              prefixIcon: const Icon(
+                Icons.search,
+                size: 26,
+                color: Color(0xFF58595B),
+              ),
               textFieldColor: const Color(0xFFDCE2EB),
               textFieldIconColor: const Color(0xFF141D29),
               searchIconColor: const Color(0xFF58595B),
@@ -297,16 +317,16 @@ class _BookyAppHomeState extends State<BookyAppHome>
               onSubmitted: (String value) {
                 setState(() {
                   final dataManager =
-                  Provider.of<DataManager>(context, listen: false);
+                      Provider.of<DataManager>(context, listen: false);
                   var searchResults =
-                  dataManager.searchBook(value, manager.myBooks);
+                      dataManager.searchBook(value, manager.myBooks);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchInBooks(
-                            searchList: searchResults,
-                            searchString: value,
-                          )));
+                                searchList: searchResults,
+                                searchString: value,
+                              )));
                 });
               },
             ),
@@ -366,7 +386,11 @@ class _BookyAppHomeState extends State<BookyAppHome>
             ),
           if (_currentMyLibIndex == 2)
             AnimSearchBar(
-              prefixIcon: const Icon(Icons.search,size: 26, color: Color(0xFF58595B),),
+              prefixIcon: const Icon(
+                Icons.search,
+                size: 26,
+                color: Color(0xFF58595B),
+              ),
               textFieldColor: const Color(0xFFDCE2EB),
               textFieldIconColor: const Color(0xFF141D29),
               searchIconColor: const Color(0xFF58595B),
@@ -383,16 +407,16 @@ class _BookyAppHomeState extends State<BookyAppHome>
               onSubmitted: (String value) {
                 setState(() {
                   final dataManager =
-                  Provider.of<DataManager>(context, listen: false);
+                      Provider.of<DataManager>(context, listen: false);
                   var searchResults =
-                  dataManager.searchBook(value, manager.myWishlist);
+                      dataManager.searchBook(value, manager.myWishlist);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchInWishlist(
-                            searchList: searchResults,
-                            searchString: value,
-                          )));
+                                searchList: searchResults,
+                                searchString: value,
+                              )));
                 });
               },
             ),
@@ -407,7 +431,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.person, size: 40,),
+            icon: const Icon(
+              Icons.person,
+              size: 40,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -421,7 +448,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
             bottom: Radius.circular(10),
           ),
         ),
-        title: Text('Explore', style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(
+          'Explore',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         actions: [
           IconButton(
             icon: const Icon(
@@ -450,16 +480,16 @@ class _BookyAppHomeState extends State<BookyAppHome>
               onSubmitted: (String value) {
                 setState(() {
                   final dataManager =
-                  Provider.of<DataManager>(context, listen: false);
+                      Provider.of<DataManager>(context, listen: false);
                   var searchResults =
-                  dataManager.searchBook(value, manager.allBooks);
+                      dataManager.searchBook(value, manager.allBooks);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchInExplore(
-                            searchList: searchResults,
-                            searchString: value,
-                          )));
+                                searchList: searchResults,
+                                searchString: value,
+                              )));
                 });
               },
             ),
@@ -467,7 +497,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.person, size: 40,),
+            icon: const Icon(
+              Icons.person,
+              size: 40,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -481,7 +514,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
             bottom: Radius.circular(10),
           ),
         ),
-        title:  Text('Dashboard', style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(
+          'Dashboard',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         bottom: TabBar(
           controller: _dashboardTabController,
           tabs: const [
@@ -491,7 +527,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.person, size: 40,),
+            icon: const Icon(
+              Icons.person,
+              size: 40,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -505,10 +544,17 @@ class _BookyAppHomeState extends State<BookyAppHome>
             bottom: Radius.circular(10),
           ),
         ),
-        title:  Text('Notes', style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(
+          'Notes',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         actions: [
           AnimSearchBar(
-            prefixIcon: const Icon(Icons.search,size: 26, color: Color(0xFF58595B),),
+            prefixIcon: const Icon(
+              Icons.search,
+              size: 26,
+              color: Color(0xFF58595B),
+            ),
             textFieldColor: const Color(0xFFDCE2EB),
             textFieldIconColor: const Color(0xFF141D29),
             searchIconColor: const Color(0xFF58595B),
@@ -525,23 +571,26 @@ class _BookyAppHomeState extends State<BookyAppHome>
             onSubmitted: (String value) {
               setState(() {
                 final dataManager =
-                Provider.of<DataManager>(context, listen: false);
+                    Provider.of<DataManager>(context, listen: false);
                 var searchResults =
-                dataManager.searchBook(value, manager.myBooks);
+                    dataManager.searchBook(value, manager.myBooks);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => SearchInNotes(
-                          searchList: searchResults,
-                          searchString: value,
-                        )));
+                              searchList: searchResults,
+                              searchString: value,
+                            )));
               });
             },
           ),
         ],
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.person, size: 40,),
+            icon: const Icon(
+              Icons.person,
+              size: 40,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
@@ -550,7 +599,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
 
     PreferredSizeWidget buildDefaultAppBar() {
       return AppBar(
-        title:  Text('My Library', style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(
+          'My Library',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         bottom: TabBar(
           controller: _myLibraryTabController,
           tabs: const [
@@ -561,7 +613,10 @@ class _BookyAppHomeState extends State<BookyAppHome>
         ),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.person, size: 40,),
+            icon: const Icon(
+              Icons.person,
+              size: 40,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
