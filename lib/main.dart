@@ -14,6 +14,7 @@ import 'package:booky/my_library/search_in_wishlist.dart';
 import 'package:booky/my_library/search_in_books.dart';
 import 'package:booky/lateral_drawer/settings.dart';
 import 'package:booky/lateral_drawer/user_profile.dart';
+import 'package:booky/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,7 @@ class BookyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: appTheme,
         title: "",
-        home: const BookyAppHome(title: "My Library"),
+        home: const SplashScreen(),
       ),
     );
   }
