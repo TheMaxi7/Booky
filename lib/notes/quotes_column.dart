@@ -55,7 +55,7 @@ class _BookQuotesState extends State<BookQuotes> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.edit),
+                      icon: const Icon(Icons.edit,size: 22,),
                       onPressed: () {
                         Navigator.push(
                           context,

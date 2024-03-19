@@ -16,7 +16,7 @@ import 'package:booky/lateral_drawer/settings.dart';
 import 'package:booky/lateral_drawer/user_profile.dart';
 import 'package:booky/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_library/my_library_books.dart';
 import 'package:booky/app_theme.dart';
@@ -27,9 +27,6 @@ import 'package:anim_search_bar/anim_search_bar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xFF141D29),
-  ));
   runApp(BookyApp());
 }
 
@@ -120,6 +117,7 @@ class _BookyAppHomeState extends State<BookyAppHome>
                         children: [
                           const Icon(
                             Icons.person,
+                            color: Color(0xFF141D29),
                             size: 60,
                           ),
                           Column(
@@ -140,7 +138,12 @@ class _BookyAppHomeState extends State<BookyAppHome>
                                 },
                                 child: Text(
                                   "View Profile",
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        decoration: TextDecoration.underline,
+                                      ),
                                 ),
                               ),
                             ],
@@ -250,6 +253,14 @@ class _BookyAppHomeState extends State<BookyAppHome>
               ),
               child: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
+                selectedLabelStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                unselectedLabelStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
                 currentIndex: _selectedIconIndex,
                 onTap: (index) {
                   setState(() {
@@ -423,6 +434,14 @@ class _BookyAppHomeState extends State<BookyAppHome>
             ),
         ],
         bottom: TabBar(
+          labelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          unselectedLabelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
           controller: _myLibraryTabController,
           tabs: const [
             Tab(text: "Books"),
@@ -520,6 +539,14 @@ class _BookyAppHomeState extends State<BookyAppHome>
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         bottom: TabBar(
+          labelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          unselectedLabelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
           controller: _dashboardTabController,
           tabs: const [
             Tab(text: "Challenges"),
@@ -605,6 +632,14 @@ class _BookyAppHomeState extends State<BookyAppHome>
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         bottom: TabBar(
+          labelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          unselectedLabelStyle: GoogleFonts.exoTextTheme().bodyLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
           controller: _myLibraryTabController,
           tabs: const [
             Tab(text: "Books"),

@@ -16,7 +16,7 @@ class _LanguagesListState extends State<LanguagesList> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFDCE2EB),
         title: Text(
-          "Settings",
+          "Language settings",
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -129,8 +129,8 @@ class _LanguagesListState extends State<LanguagesList> {
               child: Text(
                 'Apply',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: const Color(0xFFDCE2EB),
-                    ),
+                    color: const Color(0xFFDCE2EB),
+                    fontWeight: FontWeight.w700),
               ),
             ),
           ),

@@ -52,7 +52,7 @@ class _BookNotesState extends State<BookNotes> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.edit),
+                      icon: const Icon(Icons.edit, size: 22,),
                       onPressed: () {
                         Navigator.push(
                           context,

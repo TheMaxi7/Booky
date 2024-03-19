@@ -48,69 +48,75 @@ class _NewNoteState extends State<NewNote> {
             ),
           ],
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(8.0),
+        body: Column(
           children: [
-            TextField(
-              controller: titleController,
-              decoration: InputDecoration(
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF141D29)),
-                ),
-                labelText: 'Title',
-                hintText: 'Enter title',
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF58595B)),
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    titleController.text = '';
-                  }
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 8),
-              child: Text(
-                "Note content",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-            TextArea(
-              borderRadius: 10,
-              borderColor: const Color(0xFFCFD6FF),
-              textEditingController: noteController,
-              onSuffixIconPressed: () => {},
-              validation: true,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10, right: 8),
-              child: TextField(
-                controller: pageController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                  hintStyle: Theme.of(context).textTheme.bodyMedium,
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF141D29)),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(8.0),
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: InputDecoration(
+                      labelStyle: Theme.of(context).textTheme.titleMedium,
+                      hintStyle: Theme.of(context).textTheme.bodyMedium,
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF141D29)),
+                      ),
+                      labelText: 'Title',
+                      hintText: 'Enter title',
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF58595B)),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.isEmpty) {
+                          titleController.text = '';
+                        }
+                      });
+                    },
                   ),
-                  labelText: 'Page',
-                  hintText: 'Enter page number',
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF58595B)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 8),
+                    child: Text(
+                      "Note content",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    if (value.isEmpty) {
-                      pageController.text = '';
-                    }
-                  });
-                },
+                  TextArea(
+                    borderRadius: 10,
+                    borderColor: const Color(0xFFCFD6FF),
+                    textEditingController: noteController,
+                    onSuffixIconPressed: () => {},
+                    validation: true,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10, right: 8),
+                    child: TextField(
+                      controller: pageController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelStyle: Theme.of(context).textTheme.titleMedium,
+                        hintStyle: Theme.of(context).textTheme.bodyMedium,
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFF141D29)),
+                        ),
+                        labelText: 'Page',
+                        hintText: 'Enter page number',
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFF58595B)),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.isEmpty) {
+                            pageController.text = '';
+                          }
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
@@ -132,10 +138,9 @@ class _NewNoteState extends State<NewNote> {
                     backgroundColor: const Color(0xFF141D29)),
                 child: Text(
                   'Add note',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: const Color(0xFFDCE2EB)),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFFDCE2EB),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ),

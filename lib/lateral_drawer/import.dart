@@ -16,7 +16,7 @@ class _ImportState extends State<Import> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFDCE2EB),
         title: Text(
-          "Import from CSV",
+          "Import",
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),

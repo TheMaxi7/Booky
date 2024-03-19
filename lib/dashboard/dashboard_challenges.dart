@@ -21,7 +21,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+                padding: const EdgeInsets.only(left: 8, top: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -29,19 +29,16 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       "Monthly Challenge",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    GestureDetector(
-                      onTap: () {
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      iconSize: 22,
+                      onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EditChallenge(
                                     challenge:
-                                        manager.allStandardChallenges[0])));
-                      },
-                      child: Text(
-                        "edit",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
+                                    manager.allStandardChallenges[0]))); },
                     ),
                   ],
                 ),
@@ -74,6 +71,7 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
               Padding(
                   padding: const EdgeInsets.only(left: 8, bottom: 16),
                   child: Row(
+
                     children: [
                       const Icon(Icons.book),
                       Text(
@@ -86,7 +84,6 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                 padding: const EdgeInsets.only(
                   left: 8,
                   top: 8,
-                  right: 8,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,19 +92,16 @@ class _DashboardChallengesTabState extends State<DashboardChallengesTab> {
                       "Yearly Challenge",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
+                    IconButton(
+                        icon: const Icon(Icons.edit),
+                        iconSize: 22,
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EditChallenge(
                                     challenge:
-                                        manager.allStandardChallenges[1])));
-                      },
-                      child: Text(
-                        "edit",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
+                                    manager.allStandardChallenges[1]))); },
                     ),
                   ],
                 ),

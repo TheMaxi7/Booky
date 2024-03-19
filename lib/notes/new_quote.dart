@@ -48,83 +48,89 @@ class _NewQuoteState extends State<NewQuote> {
             ),
           ],
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(8.0),
+        body: Column(
           children: [
-            TextField(
-              controller: titleController,
-              decoration: InputDecoration(
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF141D29)),
-                ),
-                labelText: 'Title',
-                hintText: 'Enter title',
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF58595B)),
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    titleController.text = '';
-                  }
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 8),
-              child: Text(
-                "Quote content",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-            TextArea(
-              borderRadius: 10,
-              borderColor: const Color(0xFFCFD6FF),
-              textEditingController: quoteController,
-              onSuffixIconPressed: () => {},
-              validation: true,
-            ),
-            TextField(
-              controller: pageController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF141D29)),
-                ),
-                labelText: 'Page',
-                hintText: 'Enter page',
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF58595B)),
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    pageController.text = '';
-                  }
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 8),
-              child: Row(
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(8.0),
                 children: [
-                  Text(
-                    "Favourite",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Checkbox(
-                    value: _isFavourite, //
-                    onChanged: (bool? newValue) {
+                  TextField(
+                    controller: titleController,
+                    decoration: InputDecoration(
+                      labelStyle: Theme.of(context).textTheme.titleMedium,
+                      hintStyle: Theme.of(context).textTheme.bodyMedium,
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF141D29)),
+                      ),
+                      labelText: 'Title',
+                      hintText: 'Enter title',
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF58595B)),
+                      ),
+                    ),
+                    onChanged: (value) {
                       setState(() {
-                        _isFavourite = newValue ?? false;
+                        if (value.isEmpty) {
+                          titleController.text = '';
+                        }
                       });
                     },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 8),
+                    child: Text(
+                      "Quote content",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  TextArea(
+                    borderRadius: 10,
+                    borderColor: const Color(0xFFCFD6FF),
+                    textEditingController: quoteController,
+                    onSuffixIconPressed: () => {},
+                    validation: true,
+                  ),
+                  TextField(
+                    controller: pageController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelStyle: Theme.of(context).textTheme.titleMedium,
+                      hintStyle: Theme.of(context).textTheme.bodyMedium,
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF141D29)),
+                      ),
+                      labelText: 'Page',
+                      hintText: 'Enter page',
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF58595B)),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.isEmpty) {
+                          pageController.text = '';
+                        }
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 8),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Favourite",
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Checkbox(
+                          value: _isFavourite, //
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              _isFavourite = newValue ?? false;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -148,10 +154,9 @@ class _NewQuoteState extends State<NewQuote> {
                     backgroundColor: const Color(0xFF141D29)),
                 child: Text(
                   'Add quote',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: const Color(0xFFDCE2EB)),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFFDCE2EB),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ),

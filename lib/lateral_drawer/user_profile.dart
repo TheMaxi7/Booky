@@ -46,7 +46,7 @@ class _UserProfileState extends State<UserProfile> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
-                    Icons.person,
+                    Icons.person, color: const Color(0xFF141D29),
                     size: MediaQuery.of(context).size.height / 4.5,
                   ),
                 ),

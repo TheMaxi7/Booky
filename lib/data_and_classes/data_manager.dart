@@ -270,6 +270,11 @@ class DataManager extends ChangeNotifier {
     newQuote.index = book.quotes.length+1;
     newQuote.quote = noteContent;
     newQuote.page = pageNumber;
+    for(var quote in book.quotes){
+      if(quote.isPinned == true){
+        quote.isPinned = false;
+      }
+    }
     newQuote.isPinned=setFavourite;
     addQuoteToBook(newQuote, book);
     notifyListeners();
