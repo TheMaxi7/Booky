@@ -1,7 +1,9 @@
 # Booky
 
 This project is a fully functional front end Android application for managing your personal library developed using Flutter.
-![ezgif com-optimize (1)](https://github.com/TheMaxi7/Booky/assets/102146744/117e7552-c18c-4697-9c46-cffcfda451f9)
+
+
+<img src="https://github.com/TheMaxi7/Booky/assets/102146744/117e7552-c18c-4697-9c46-cffcfda451f9" width="150">
 
 
 ## Getting Started
